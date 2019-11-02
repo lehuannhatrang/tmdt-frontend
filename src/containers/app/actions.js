@@ -7,6 +7,7 @@ import {
     FETCH_USERS_ACTIONS, 
     FETCH_USERS_ACTIONS_SUCCESS, 
     FETCH_USERS_SUCCESS,
+    ADD_TO_CART,
     REQUEST_FAILED
 } from "./constants";
 
@@ -63,6 +64,13 @@ export function fetchUserActionsSuccess(userActions) {
     return {
         type: FETCH_USERS_ACTIONS_SUCCESS,
         userActions
+    }
+}
+
+export function addToCard(product) {
+    return {
+        type: ADD_TO_CART,
+        product
     }
 }
 

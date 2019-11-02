@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Redirect, Route, Switch} from "react-router-dom";
 import Login from "../login";
 import DashBoard from "../dashboard";
+import Cart from "../cart";
+import Checkout from "../checkout";
 import NotFound from "../errors/NotFound";
 import If from "../../components/control/If";
 
@@ -15,6 +17,8 @@ class Router extends Component {
                 <Switch>
                     <Route exact path="/login" component={Login}/>
                     <Route exact path="/" component={DashBoard}/>
+                    <Route exact path="/cart" component={Cart}/>
+                    <Route exact path="/checkout" component={Checkout}/>
                     <Route path="" component={NotFound} />
                 </Switch>
             </div>

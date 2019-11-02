@@ -7,6 +7,8 @@ export const FETCH_USERS_SUCCESS = 'pull-data/App/FETCH_USERS_SUCCESS';
 export const FETCH_USERS_ACTIONS = 'pull-data/App/FETCH_USERS_ACTIONS';
 export const FETCH_USERS_ACTIONS_SUCCESS = 'pull-data/App/FETCH_USERS_ACTIONS_SUCCESS';
 
+export const ADD_TO_CART = 'pull-data/App/ADD_TO_CART';
+
 export const AUTHENTICATE = 'pull-data/Login/AUTHENTICATE';
 export const AUTHENTICATE_SUCCESS = 'pull-data/Login/AUTHENTICATE_SUCCESS';
 
