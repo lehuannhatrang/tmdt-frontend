@@ -1,7 +1,4 @@
 import React, {Component} from 'react';
-import '../../public/assets/css/style.css';
-import '../../public/assets/css/style.min.css';
-import '../../public/style.css';
 import Router from './router';
 import injectReducer from "../../utils/injectReducer";
 import reducer from "./reducer";

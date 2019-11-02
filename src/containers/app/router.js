@@ -12,9 +12,6 @@ class Router extends Component {
     render() {
         return (
             <div>
-                <If condition={this.props.location.pathname !== '/login' && !localStorage.getItem('userToken')}>
-                    <Redirect to={{pathname: '/login', state: {redirect: this.props.location.pathname}}} />
-                </If>
                 <Switch>
                     <Route exact path="/login" component={Login}/>
                     <Route exact path="/" component={DashBoard}/>
