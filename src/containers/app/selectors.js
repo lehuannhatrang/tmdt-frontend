@@ -28,6 +28,10 @@ const selectUserToken = () =>
 
 const selectUserActions = () =>
     createSelector(selectGlobal, global => global.get('userActions'));
+    
+const selectCartProducts = () =>
+createSelector(selectGlobal, global => global.get('cartProducts'));
+
 
 
 export {
@@ -41,4 +45,5 @@ export {
     selectErrorInfo,
     selectForm,
     selectUserActions,
+    selectCartProducts,
 }
