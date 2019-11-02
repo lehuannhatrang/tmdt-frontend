@@ -2,10 +2,20 @@ import React, {Component} from 'react';
 import Header from "../../components/header/Header";
 import {connect} from "react-redux";
 import {createStructuredSelector} from 'reselect';
+import {
+    fetchProducts
+} from "../app/actions";
+import {
+    selectProducts
+} from "../app/selectors";
 
 class Shopping extends Component {
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+        this.props.fetchProducts('');
     }
 
     renderCardProduct(product) {
@@ -310,11 +320,12 @@ class Shopping extends Component {
 
 function mapDispatchToProps(dispatch) {
     return {
-        dispatch
+        fetchProducts: (query) => fetchProducts(query)
     }
 }
 
 const mapStateToProps = createStructuredSelector({
+    products: selectProducts()
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Shopping);
