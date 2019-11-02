@@ -7,6 +7,9 @@ import {
     FETCH_USERS_ACTIONS, 
     FETCH_USERS_ACTIONS_SUCCESS, 
     FETCH_USERS_SUCCESS,
+    FETCH_PRODUCTS,
+    FETCH_PRODUCTS_SUCCESS,
+    ADD_TO_CART,
     REQUEST_FAILED
 } from "./constants";
 
@@ -63,6 +66,27 @@ export function fetchUserActionsSuccess(userActions) {
     return {
         type: FETCH_USERS_ACTIONS_SUCCESS,
         userActions
+    }
+}
+
+export function addToCard(product) {
+    return {
+        type: ADD_TO_CART,
+        product
+    }
+}
+
+export function fetchProducts(query) {
+    return {
+        type: FETCH_PRODUCTS,
+        query
+    }
+}
+
+export function fetchProductsSuccess(products) {
+    return {
+        type: FETCH_PRODUCTS_SUCCESS,
+        products,
     }
 }
 

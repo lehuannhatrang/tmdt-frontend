@@ -3,13 +3,15 @@ import {
     AUTHENTICATE, 
     FETCH_USER, 
     FETCH_USERS, 
-    FETCH_USERS_ACTIONS
+    FETCH_USERS_ACTIONS,
+    FETCH_PRODUCTS,
 } from "./constants";
 import {
     error, 
     fetchUserActionsSuccess, 
     fetchUsersSuccess,
     fetchUserSuccess,
+    fetchProductsSuccess,
     loginSuccess
 } from "./actions";
 
@@ -106,6 +108,29 @@ function* doFetchUserActions() {
     yield fork(fetchUserActionsWatcher)
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function* fetchProducts() {
+    console.log('ok')
+    try {
+        const data = yield HttpUtils.getJsonAuthorization(`/products`);
+        if (data) {
+            yield put(fetchProductsSuccess(data));
+        }
+    } catch (err) {
+        yield put(error(err.response.data))
+    }
+}
+
+function* fetchProductsWatcher() {
+    yield takeLatest(FETCH_PRODUCTS, fetchProducts)
+}
+
+function* doFetchProducts() {
+    yield fork(fetchProductsWatcher)
+}
+
+
 export default function* root() {
     
     try {
@@ -114,6 +139,7 @@ export default function* root() {
             doFetchUser(),
             doFetchUserActions(),
             doFetchUsers(),
+            doFetchProducts(),
         ])
     } catch (e) {
         console.log(e)
