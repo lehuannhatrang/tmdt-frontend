@@ -30,7 +30,7 @@ const selectUserActions = () =>
     createSelector(selectGlobal, global => global.get('userActions'));
     
 const selectCartProducts = () =>
-createSelector(selectGlobal, global => global.get('cartProducts'));
+createSelector(selectGlobal, global => Array.from(global.get('cartProducts')));
 
 
 

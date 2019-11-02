@@ -8,13 +8,13 @@ class Cart extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            products: [],
+            cartProducts: [],
         }
     }
 
     componentDidMount() {
         this.setState({
-            products: [
+            cartProducts: [
                 {
                     name: 'example',
                     price: '100.00',
@@ -99,7 +99,9 @@ class Cart extends Component {
                                             
                                         )
                                     })}
-                                    
+                                    {cartProducts.length === 0 && <thead>
+                                    <tr>
+                                        <th scope="col">No item</th> </tr> </thead>}
                                     
                                     {/* <tr class="bottom_button">
                                         <td>
