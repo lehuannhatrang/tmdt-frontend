@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
+import Item from "../../components/item/Item";
 import {connect} from "react-redux";
 import {createStructuredSelector} from 'reselect';
 import HttpUtils from '../../utils/http.util'
@@ -20,11 +21,7 @@ class DashBoard extends Component {
           .then(data => {
                 this.setState({
                     trending_list: data.data,
-                    best_seller_list: [...data.data,
-                        {id: "2", name: "2", sellPrice: 2}, 
-                        {id: "3", name: "3", sellPrice: 3}, 
-                        {id: "4", name: "4", sellPrice: 4},
-                        {id: "5", name: "5", sellPrice: 5}]
+                    best_seller_list: data.data
                 })
                 
           })
@@ -39,7 +36,7 @@ class DashBoard extends Component {
             <div>
                 <Header/>
                 <main class="site-main">
-                    {/* <section class="hero-banner">
+                    <section class="hero-banner">
                     <div class="container">
                         <div class="row no-gutters align-items-center pt-60px">
                         <div class="col-5 d-none d-sm-block">
@@ -57,7 +54,7 @@ class DashBoard extends Component {
                         </div>
                         </div>
                     </div>
-                    </section> */}
+                    </section>
                     <section class="section-margin mt-0">
                     <div class="owl-carousel owl-theme hero-carousel">
                         <div class="hero-carousel__slide">
@@ -91,28 +88,12 @@ class DashBoard extends Component {
                             </div>
                             <div class="row">
                                 {this.state.trending_list.map(item => 
-                                <div class="col-md-6 col-lg-4 col-xl-3" key={item.id}>
-                                    <div class="card text-center card-product">
-                                    <div class="card-product__img">
-                                        <img class="card-img" src="img/product/product1.png" alt=""/>
-                                        <ul class="card-product__imgOverlay">
-                                        <li><button><i class="ti-search"></i></button></li>
-                                        <li><button><i class="ti-shopping-cart"></i></button></li>
-                                        <li><button><i class="ti-heart"></i></button></li>
-                                        </ul>
-                                    </div>
-                                    <div class="card-body">
-                                        <p>{item.category}</p>
-                                        <h4 class="card-product__title"><a href="single-product.html">{item.name}</a></h4>
-                                        <p class="card-product__price">{item.sellPrice}</p>
-                                    </div>
-                                    </div>
-                                </div>
+                                    <Item item={item} key={item.id}/>
                                 )}
                             </div>
                         </div>
                         </section>
-                        {/* <section class="offer" id="parallax-1" data-anchor-target="#parallax-1" data-300-top="background-position: 20px 30px" data-top-bottom="background-position: 0 20px">
+                        <section class="offer" id="parallax-1" data-anchor-target="#parallax-1" data-300-top="background-position: 20px 30px" data-top-bottom="background-position: 0 20px">
                             <div class="container">
                                 <div class="row">
                                 <div class="col-xl-5">
@@ -125,7 +106,7 @@ class DashBoard extends Component {
                                 </div>
                                 </div>
                             </div>
-                        </section> */}
+                        </section>
                         <section class="section-margin calc-60px">
                             <div class="container">
                                 <div class="section-intro pb-60px">
@@ -134,23 +115,7 @@ class DashBoard extends Component {
                                 </div>
                                 <div class="row">
                                     {this.state.best_seller_list.map(item => 
-                                    <div class="col-md-6 col-lg-4 col-xl-3" key={item.id}>
-                                        <div class="card text-center card-product">
-                                        <div class="card-product__img">
-                                            <img class="card-img" src="img/product/product2.png" alt=""/>
-                                            <ul class="card-product__imgOverlay">
-                                            <li><button><i class="ti-search"></i></button></li>
-                                            <li><button><i class="ti-shopping-cart"></i></button></li>
-                                            <li><button><i class="ti-heart"></i></button></li>
-                                            </ul>
-                                        </div>
-                                        <div class="card-body">
-                                            <p>{item.category}</p>
-                                            <h4 class="card-product__title"><a href="single-product.html">{item.name}</a></h4>
-                                            <p class="card-product__price">{item.sellPrice}</p>
-                                        </div>
-                                        </div>
-                                    </div>
+                                        <Item item={item} key={item.id}/>
                                     )}
                                 </div>
                             </div>
@@ -169,7 +134,7 @@ class DashBoard extends Component {
                                     </div>
                                     <button class="button button-subscribe mr-auto mb-1" type="submit">Subscribe Now</button>
                                     <div style={{position: "absolute", left: "-5000px"}}>
-                                        <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text"/>
+                                        <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabIndex="-1" value="" type="text"/>
                                     </div>
 
                                     </form>

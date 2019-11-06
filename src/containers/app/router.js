@@ -6,6 +6,7 @@ import Cart from "../cart";
 import Checkout from "../checkout";
 import NotFound from "../errors/NotFound";
 import Shopping from "../shopping";
+import ProductInfo from "../product_info";
 import If from "../../components/control/If";
 
 class Router extends Component {
@@ -21,6 +22,7 @@ class Router extends Component {
                     <Route exact path="/cart" component={Cart}/>
                     <Route exact path="/checkout" component={Checkout}/>
                     <Route exact path="/shopping" component={Shopping} />
+                    <Route exact path="/info:product_id" component={ProductInfo} />
                     <Route path="" component={NotFound} />
                 </Switch>
             </div>
