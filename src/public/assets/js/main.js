@@ -33,7 +33,6 @@ $(function() {
 
   //------- Best Seller Carousel -------//
   if($('.owl-carousel').length > 0){
-    console.log('innnnnnn')
     $('#bestSellerCarousel').owlCarousel({
       loop:true,
       margin:30,

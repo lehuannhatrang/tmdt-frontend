@@ -74,6 +74,7 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "routes": "^2.1.0",
+    "semantic-ui-react": "^0.88.1",
     "styled": "^1.0.0"
   }
 }

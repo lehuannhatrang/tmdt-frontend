@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import Header from "../../components/header/Header";
+import Footer from "../../components/footer/Footer";
 import {connect} from "react-redux";
 import {createStructuredSelector} from 'reselect';
-import Axios from 'axios';
 import HttpUtils from '../../utils/http.util'
 import $ from "jquery";
-
-const SERVER_URL = "https://vitinhvui.herokuapp.com"
 
 class DashBoard extends Component {
     constructor(props) {
@@ -18,25 +16,17 @@ class DashBoard extends Component {
     }
 
     componentDidMount() {
-        // Get trending product list
-        // Axios.get(SERVER_URL + '/api/products')
-        //   .then(res => {
-        //     this.setState({
-        //         trending_list: res.data.data
-        //     });
-        //   })
-
-        // Get best seller product list
-        // Axios.get(SERVER_URL + '/api/products')
-        //   .then(res => {
-        //     this.setState({
-        //         best_seller_list: [...res.data.data, {id: "2"}, {id: "3"}, {id: "4"},{id: "5"}]
-        //     });
-        //   })
-
-          HttpUtils.getJson('/api/products')
+          HttpUtils.getJson('/products')
           .then(data => {
-            
+                this.setState({
+                    trending_list: data.data,
+                    best_seller_list: [...data.data,
+                        {id: "2", name: "2", sellPrice: 2}, 
+                        {id: "3", name: "3", sellPrice: 3}, 
+                        {id: "4", name: "4", sellPrice: 4},
+                        {id: "5", name: "5", sellPrice: 5}]
+                })
+                
           })
           .catch(err => {
 
@@ -45,12 +35,11 @@ class DashBoard extends Component {
 
 
     render() {
-        console.log(this.state.best_seller_list, '------------------------')
         return(
             <div>
                 <Header/>
                 <main class="site-main">
-                    <section class="hero-banner">
+                    {/* <section class="hero-banner">
                     <div class="container">
                         <div class="row no-gutters align-items-center pt-60px">
                         <div class="col-5 d-none d-sm-block">
@@ -68,7 +57,7 @@ class DashBoard extends Component {
                         </div>
                         </div>
                     </div>
-                    </section>
+                    </section> */}
                     <section class="section-margin mt-0">
                     <div class="owl-carousel owl-theme hero-carousel">
                         <div class="hero-carousel__slide">
@@ -123,7 +112,7 @@ class DashBoard extends Component {
                             </div>
                         </div>
                         </section>
-                        <section class="offer" id="parallax-1" data-anchor-target="#parallax-1" data-300-top="background-position: 20px 30px" data-top-bottom="background-position: 0 20px">
+                        {/* <section class="offer" id="parallax-1" data-anchor-target="#parallax-1" data-300-top="background-position: 20px 30px" data-top-bottom="background-position: 0 20px">
                             <div class="container">
                                 <div class="row">
                                 <div class="col-xl-5">
@@ -136,41 +125,60 @@ class DashBoard extends Component {
                                 </div>
                                 </div>
                             </div>
-                        </section>
-
+                        </section> */}
                         <section class="section-margin calc-60px">
                             <div class="container">
                                 <div class="section-intro pb-60px">
                                 <p>Popular Item in the market</p>
                                 <h2>Best <span class="section-intro__style">Sellers</span></h2>
                                 </div>
-                                <div class="owl-carousel owl-theme " id="bestSellerCarousel">
-                                    {/* <div class="owl-stage-outer">
-                                    <div class="owl-stage" > */}
-                                    {this.state.best_seller_list.map(item =>
-                                        // <div class="owl-item" style={{width: "255px", marginRight: "30px"}} key={item.id}>
+                                <div class="row">
+                                    {this.state.best_seller_list.map(item => 
+                                    <div class="col-md-6 col-lg-4 col-xl-3" key={item.id}>
                                         <div class="card text-center card-product">
-                                            <div class="card-product__img">
-                                            <img class="img-fluid" src="img/product/product1.png" alt=""/>
+                                        <div class="card-product__img">
+                                            <img class="card-img" src="img/product/product2.png" alt=""/>
                                             <ul class="card-product__imgOverlay">
-                                                <li><button><i class="ti-search"></i></button></li>
-                                                <li><button><i class="ti-shopping-cart"></i></button></li>
-                                                <li><button><i class="ti-heart"></i></button></li>
+                                            <li><button><i class="ti-search"></i></button></li>
+                                            <li><button><i class="ti-shopping-cart"></i></button></li>
+                                            <li><button><i class="ti-heart"></i></button></li>
                                             </ul>
-                                            </div>
-                                            <div class="card-body">
-                                            <p>Accessories</p>
-                                            <h4 class="card-product__title"><a href="single-product.html">Quartz Belt Watch</a></h4>
-                                            <p class="card-product__price">$150.00</p>
-                                            </div>
                                         </div>
-                                        // </div>
+                                        <div class="card-body">
+                                            <p>{item.category}</p>
+                                            <h4 class="card-product__title"><a href="single-product.html">{item.name}</a></h4>
+                                            <p class="card-product__price">{item.sellPrice}</p>
+                                        </div>
+                                        </div>
+                                    </div>
                                     )}
-                                    {/* </div>
-                                    </div> */}
                                 </div>
                             </div>
                         </section>
+
+                        <section class="subscribe-position">
+                            <div class="container">
+                                <div class="subscribe text-center">
+                                <h3 class="subscribe__title">Get Update From Anywhere</h3>
+                                <p>Bearing Void gathering light light his eavening unto dont afraid</p>
+                                <div id="mc_embed_signup">
+                                    <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe-form form-inline mt-5 pt-1">
+                                    <div class="form-group ml-sm-auto">
+                                        <input class="form-control mb-1" type="email" name="EMAIL" placeholder="Enter your email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '" />
+                                        <div class="info"></div>
+                                    </div>
+                                    <button class="button button-subscribe mr-auto mb-1" type="submit">Subscribe Now</button>
+                                    <div style={{position: "absolute", left: "-5000px"}}>
+                                        <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text"/>
+                                    </div>
+
+                                    </form>
+                                </div>
+                                
+                                </div>
+                            </div>
+                        </section>
+                        <Footer/>
                 </main>
             </div>
         );
