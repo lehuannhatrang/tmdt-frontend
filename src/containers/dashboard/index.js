@@ -17,7 +17,7 @@ class DashBoard extends Component {
     }
 
     componentDidMount() {
-          HttpUtils.getJson('/products')
+          HttpUtils.getJson('/products?limit=8')
           .then(data => {
                 this.setState({
                     trending_list: data.data,

@@ -45,6 +45,7 @@
     "connected-react-router": "^4.5.0",
     "cron-parser": "^2.7.3",
     "glamor": "^2.20.40",
+    "google-maps-react": "^2.0.2",
     "history": "^4.7.2",
     "immutable": "^4.0.0-rc.12",
     "invariant": "^2.2.4",

@@ -66,17 +66,17 @@ class Footer extends Component {
                                     <div class="ml-40">
                                         <p class="sm-head">
                                             <span class="fa fa-location-arrow"></span>
-                                            Head Office
+                                            Vi Tinh Vui
                                         </p>
-                                        <p>123, Main Street, Your City</p>
+                                        <p>268 Ly Thuong Kiet, District 10, Ho Chi Minh City</p>
             
                                         <p class="sm-head">
                                             <span class="fa fa-phone"></span>
                                             Phone Number
                                         </p>
                                         <p>
-                                            +123 456 7890 <br/>
-                                            +123 456 7890
+                                            +84 000000000 <br/>
+                                            +84 111111111
                                         </p>
             
                                         <p class="sm-head">
@@ -84,9 +84,8 @@ class Footer extends Component {
                                             Email
                                         </p>
                                         <p>
-                                            free@infoexample.com <br/>
-                                            www.infoexample.com
-                                        </p>
+                                            pdt@hcmut.edu.vn <br/>
+                                            www.hcmut.edu.vn                                        </p>
                                     </div>
                                 </div>
                             </div>

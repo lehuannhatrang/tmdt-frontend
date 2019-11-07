@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
-import Item from "../../components/item/Item";
+import RecommendItem from "../../components/recommend_item/RecommendItem";
+import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {createStructuredSelector} from 'reselect';
 import HttpUtils from '../../utils/http.util';
@@ -24,7 +25,8 @@ class ProductInfo extends Component {
         const id = props.match.params.product_id !== undefined ? props.match.params.product_id : props.location.product_id
         this.state = {
             id: id,
-            product: {}
+            product: {},
+            best_seller_list: [],
         }
         this.displayPrice = this.displayPrice.bind(this);
     }
@@ -44,6 +46,16 @@ class ProductInfo extends Component {
         .catch(err => {
 
         })
+        HttpUtils.getJson('/products?limit=8')
+          .then(data => {
+                this.setState({
+                    best_seller_list: data.data
+                })
+                
+          })
+          .catch(err => {
+
+          })
       }
 
 
@@ -51,7 +63,8 @@ class ProductInfo extends Component {
         const product = this.state.product
         if (Object.keys(product).length === 0){
             return <div>Loading...</div>
-        } 
+        }
+        window.scrollTo(0, 0) 
         return(
             <div>
                 <Header/>
@@ -95,10 +108,8 @@ class ProductInfo extends Component {
                                     <p>{product.shortDescription}</p>
                                     <div class="product_count">
                                         <label>Quantity:</label>
-                                        <button class="increase items-count" type="button"><i class="ti-angle-left"></i></button>
-                                                        <input type="text" name="qty" id="sst" class="input-text qty"/>
-                                                        <button class="reduced items-count" type="button"><i class="ti-angle-right"></i></button>
-                                                        <a class="button primary-btn" href="#">Add to Cart</a>               
+                                                        <input type="number" min={0} name="qty" id="sst" class="input-text qty"/>
+                                                        <Link class="button primary-btn" to="/">Add to Cart</Link>               
                                     </div>
                                 </div>
                             </div>
@@ -413,111 +424,11 @@ class ProductInfo extends Component {
                             <p>Popular Item in the market</p>
                             <h2>Top <span class="section-intro__style">Product</span></h2>
                         </div>
-                        <div class="row mt-30">
-                    <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
-                    <div class="single-search-product-wrapper">
-                        <div class="single-search-product d-flex">
-                        <a href="#"><img src="img/product/product-sm-1.png" alt=""/></a>
-                        <div class="desc">
-                            <a href="#" class="title">Gray Coffee Cup</a>
-                            <div class="price">$170.00</div>
-                        </div>
-                        </div>
-                        <div class="single-search-product d-flex">
-                        <a href="#"><img src="img/product/product-sm-2.png" alt=""/></a>
-                        <div class="desc">
-                            <a href="#" class="title">Gray Coffee Cup</a>
-                            <div class="price">$170.00</div>
-                        </div>
-                        </div>
-                        <div class="single-search-product d-flex">
-                        <a href="#"><img src="img/product/product-sm-3.png" alt=""/></a>
-                        <div class="desc">
-                            <a href="#" class="title">Gray Coffee Cup</a>
-                            <div class="price">$170.00</div>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-
-                    <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
-                    <div class="single-search-product-wrapper">
-                        <div class="single-search-product d-flex">
-                        <a href="#"><img src="img/product/product-sm-4.png" alt=""/></a>
-                        <div class="desc">
-                            <a href="#" class="title">Gray Coffee Cup</a>
-                            <div class="price">$170.00</div>
-                        </div>
-                        </div>
-                        <div class="single-search-product d-flex">
-                        <a href="#"><img src="img/product/product-sm-5.png" alt=""/></a>
-                        <div class="desc">
-                            <a href="#" class="title">Gray Coffee Cup</a>
-                            <div class="price">$170.00</div>
-                        </div>
-                        </div>
-                        <div class="single-search-product d-flex">
-                        <a href="#"><img src="img/product/product-sm-6.png" alt=""/></a>
-                        <div class="desc">
-                            <a href="#" class="title">Gray Coffee Cup</a>
-                            <div class="price">$170.00</div>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-
-                    <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
-                    <div class="single-search-product-wrapper">
-                        <div class="single-search-product d-flex">
-                        <a href="#"><img src="img/product/product-sm-7.png" alt=""/></a>
-                        <div class="desc">
-                            <a href="#" class="title">Gray Coffee Cup</a>
-                            <div class="price">$170.00</div>
-                        </div>
-                        </div>
-                        <div class="single-search-product d-flex">
-                        <a href="#"><img src="img/product/product-sm-8.png" alt=""/></a>
-                        <div class="desc">
-                            <a href="#" class="title">Gray Coffee Cup</a>
-                            <div class="price">$170.00</div>
-                        </div>
-                        </div>
-                        <div class="single-search-product d-flex">
-                        <a href="#"><img src="img/product/product-sm-9.png" alt=""/></a>
-                        <div class="desc">
-                            <a href="#" class="title">Gray Coffee Cup</a>
-                            <div class="price">$170.00</div>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-
-                    <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
-                    <div class="single-search-product-wrapper">
-                        <div class="single-search-product d-flex">
-                        <a href="#"><img src="img/product/product-sm-1.png" alt=""/></a>
-                        <div class="desc">
-                            <a href="#" class="title">Gray Coffee Cup</a>
-                            <div class="price">$170.00</div>
-                        </div>
-                        </div>
-                        <div class="single-search-product d-flex">
-                        <a href="#"><img src="img/product/product-sm-2.png" alt=""/></a>
-                        <div class="desc">
-                            <a href="#" class="title">Gray Coffee Cup</a>
-                            <div class="price">$170.00</div>
-                        </div>
-                        </div>
-                        <div class="single-search-product d-flex">
-                        <a href="#"><img src="img/product/product-sm-3.png" alt=""/></a>
-                        <div class="desc">
-                            <a href="#" class="title">Gray Coffee Cup</a>
-                            <div class="price">$170.00</div>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
+                        <div class="row">
+                                {this.state.best_seller_list.map(item => 
+                                    <RecommendItem item={item} key={item.id}/>
+                                )}
+                            </div>
                     </div>
                 </section>
                 <Footer/>
