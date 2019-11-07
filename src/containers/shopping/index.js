@@ -320,7 +320,7 @@ class Shopping extends Component {
 
 function mapDispatchToProps(dispatch) {
     return {
-        fetchProducts: (query) => fetchProducts(query)
+        fetchProducts: (query) => dispatch(fetchProducts(query))
     }
 }
 

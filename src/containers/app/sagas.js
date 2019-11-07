@@ -111,9 +111,9 @@ function* doFetchUserActions() {
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function* fetchProducts() {
-    console.log('ok')
     try {
-        const data = yield HttpUtils.getJsonAuthorization(`/products`);
+        console.log('b')
+        const data = yield HttpUtils.getJson(`/products?limit=100`);
         if (data) {
             yield put(fetchProductsSuccess(data));
         }
