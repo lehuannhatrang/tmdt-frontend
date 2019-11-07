@@ -77,7 +77,6 @@ export function addToCard(product) {
 }
 
 export function fetchProducts(query) {
-    console.log('ok')
     return {
         type: FETCH_PRODUCTS,
         query

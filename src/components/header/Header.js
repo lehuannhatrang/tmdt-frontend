@@ -33,14 +33,7 @@ class Header extends Component {
                             <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
                             <li class="nav-item active"><Link class="nav-link" to="/">Home</Link></li>
                             <li class="nav-item submenu dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                aria-expanded="false">Shop</a>
-                                <ul class="dropdown-menu">
-                                <li class="nav-item"><Link class="nav-link" to="/shopping">Shop Category</Link></li>
-                                <li class="nav-item"><Link class="nav-link" to="/checkout">Product Checkout</Link></li>
-                                <li class="nav-item"><Link class="nav-link" to="/confirm">Confirmation</Link></li>
-                                <li class="nav-item"><Link class="nav-link" to="/cart">Shopping Cart</Link></li>
-                                </ul>
+                                <Link to="/shopping" class="nav-link">Shopping</Link>
                             </li>
                             {/* <li class="nav-item submenu dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -50,15 +43,14 @@ class Header extends Component {
                                 <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
                                 </ul>
                                             </li> */}
-                            <li class="nav-item submenu dropdown">
+                            {/* <li class="nav-item submenu dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                 aria-expanded="false">Pages</a>
                                 <ul class="dropdown-menu">
                                 <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
                                 <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
-                                {/* <li class="nav-item"><a class="nav-link" href="tracking-order.html">Tracking</a></li> */}
                                 </ul>
-                            </li>
+                            </li> */}
                             <li class="nav-item"><Link class="nav-link" to="/contact">Contact</Link></li>
                             </ul>
 

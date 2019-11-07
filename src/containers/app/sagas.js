@@ -110,10 +110,9 @@ function* doFetchUserActions() {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function* fetchProducts() {
+function* fetchProducts(params) {
     try {
-        console.log('b')
-        const data = yield HttpUtils.getJson(`/products?limit=100`);
+        const data = yield HttpUtils.getJson(`/products?${params.query||'limit=100'}`);
         if (data) {
             yield put(fetchProductsSuccess(data));
         }

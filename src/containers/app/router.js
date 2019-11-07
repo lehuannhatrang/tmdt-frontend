@@ -24,7 +24,7 @@ class Router extends Component {
                     <Route exact path="/checkout" component={Checkout}/>
                     <Route exact path="/shopping" component={Shopping} />
                     <Route exact path="/contact" component={Contact} />
-                    <Route exact path="/info:product_id" component={ProductInfo} />
+                    <Route exact path="/product/:product_id" component={ProductInfo} />
                     <Route path="" component={NotFound} />
                 </Switch>
             </div>
