@@ -126,10 +126,10 @@ class ProductInfo extends Component {
                                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
                                 aria-selected="false">Specification</a>
                             </li>
-                            <li class="nav-item">
+                            {/* <li class="nav-item">
                                 <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
                                 aria-selected="false">Comments</a>
-                            </li>
+                            </li> */}
                             <li class="nav-item">
                                 <a class="nav-link active" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
                                 aria-selected="false">Reviews</a>
@@ -210,7 +210,7 @@ class ProductInfo extends Component {
                                     </table>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                            {/* <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="comment_list">
@@ -292,7 +292,7 @@ class ProductInfo extends Component {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                             <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
                                 <div class="row">
                                     <div class="col-lg-6">
