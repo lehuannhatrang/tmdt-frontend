@@ -30,7 +30,14 @@ const selectUserActions = () =>
     createSelector(selectGlobal, global => global.get('userActions'));
     
 const selectCartProducts = () =>
+<<<<<<< HEAD
 createSelector(selectGlobal, global => Array.from(global.get('cartProducts')));
+=======
+    createSelector(selectGlobal, global => global.get('cartProducts'));
+
+const selectProducts = () => 
+    createSelector(selectGlobal, global => global.get('products'));
+>>>>>>> master
 
 
 
@@ -46,4 +53,5 @@ export {
     selectForm,
     selectUserActions,
     selectCartProducts,
+    selectProducts,
 }

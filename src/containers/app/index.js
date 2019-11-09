@@ -25,7 +25,7 @@ class App extends Component {
 
     componentDidMount() {
         if (localStorage.getItem('userToken')) {
-            this.props.fetchUser();
+            // this.props.fetchUser();
         }
     }
 
