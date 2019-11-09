@@ -3,6 +3,10 @@ import Header from "../../components/header/Header";
 import {connect} from "react-redux";
 import {createStructuredSelector} from 'reselect';
 import { selectCartProducts } from '../app/selectors';
+import {
+    addToCart, removeFromCart
+} from "../app/actions";
+import { convertNumberToVND } from '../../helper/convertVND';
 
 class Cart extends Component {
     constructor(props) {
@@ -31,6 +35,10 @@ class Cart extends Component {
 
     render() {
         const { cartProducts } = this.props;
+        console.log(cartProducts)
+        const totalPrice = cartProducts.reduce((a, b) => {
+            return a + b.sellPrice*b.quantity;
+        }, 0)
         return(
             <div>
                 <Header/>
@@ -50,9 +58,15 @@ class Cart extends Component {
                 </div>
                 </section>
             
-            
+            {cartProducts.length === 0 && 
+            <div className="text-center mt-4">
+                <h4>No Item Found</h4>
+                <a class="gray_btn mt-2" href="/shopping">Back to shop</a>
 
-            <section class="cart_area">
+            </div>
+            }
+
+            {cartProducts.length > 0 && <section class="cart_area">
                 <div class="container">
                     <div class="cart_inner">
                         <div class="table-responsive">
@@ -60,7 +74,7 @@ class Cart extends Component {
                                 <thead>
                                     <tr>
                                         <th scope="col">Product</th>
-                                        <th scope="col">Price</th>
+                                        <th scope="col">Price/Unit</th>
                                         <th scope="col">Quantity</th>
                                         <th scope="col">Total</th>
                                     </tr>
@@ -71,8 +85,8 @@ class Cart extends Component {
                                         <tr>
                                             <td>
                                                 <div class="media">
-                                                    <div class="d-flex">
-                                                        <img src="img/cart/cart1.png" alt=""/>
+                                                    <div class="d-flex" style={{maxWidth: 180}}>
+                                                        <img style={{height: '100%', width: '100%'}} src={product.images ? product.images[0].url : 'img/cart/cart1.png'} alt=""/>
                                                     </div>
                                                     <div class="media-body">
                                                         <p>{product.name}</p>
@@ -80,20 +94,20 @@ class Cart extends Component {
                                                 </div>
                                             </td>
                                             <td>
-                                                <h5>${product.price}</h5>
+                                                <h5>{convertNumberToVND(product.sellPrice)} VND</h5>
                                             </td>
                                             <td>
                                                 <div class="product_count">
                                                     <input type="text" name="qty" id="sst" maxlength="12" value={product.quantity} title="Quantity:"
                                                         class="input-text qty"/>
-                                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                                        class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                                        class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+                                                    <button onClick={() => this.props.addToCart(product)}
+                                                        class="increase items-count" type="button"><i class="fa fa-chevron-up"></i></button>
+                                                    <button onClick={() => this.props.removeFromCart(product.id)}
+                                                        class="reduced items-count" type="button"><i class="fa fa-chevron-down"></i></button>
                                                 </div>
                                             </td>
                                             <td>
-                                                <h5>${product.price*product.quantity}</h5>
+                                                <h5>{convertNumberToVND(product.sellPrice*product.quantity)} VND</h5>
                                             </td>
                                         </tr>
                                             
@@ -129,9 +143,9 @@ class Cart extends Component {
                                             <h5>Subtotal</h5>
                                         </td>
                                         <td>
-                                            <h5>${cartProducts.reduce((a, b) => {
-                                                return a + b.price*b.quantity;
-                                            }, 0)}</h5>
+                                            <h5>
+                                                {convertNumberToVND(totalPrice)} VND
+                                            </h5>
                                         </td>
                                     </tr>
                                     
@@ -147,8 +161,8 @@ class Cart extends Component {
                                         </td>
                                         <td>
                                             <div class="checkout_btn_inner d-flex align-items-center">
-                                                <a class="gray_btn" href="#">Back</a>
-                                                <a class="primary-btn ml-2" href="#">Proceed to checkout</a>
+                                                <a class="gray_btn" href="/shopping">Back</a>
+                                                <a class="primary-btn ml-2" href="/checkout">Proceed to checkout</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -157,7 +171,7 @@ class Cart extends Component {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section>}
             </div>
         );
     }
@@ -170,7 +184,8 @@ Cart.defaultProps = {
 
 function mapDispatchToProps(dispatch) {
     return {
-        dispatch
+        addToCart: (product) => dispatch(addToCart(product)),
+        removeFromCart: (productId) => dispatch(removeFromCart(productId))
     }
 }
 

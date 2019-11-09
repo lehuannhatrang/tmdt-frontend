@@ -1,4 +1,6 @@
-import {fromJS} from 'immutable';
+import {fromJS , Map} from 'immutable';
+import {REHYDRATE} from 'redux-persist/constants';
+
 import {
     AUTHENTICATE,
     AUTHENTICATE_SUCCESS,
@@ -12,6 +14,8 @@ import {
     FETCH_PRODUCTS,
     FETCH_PRODUCTS_SUCCESS,
     ADD_TO_CART,
+    ADD_TO_CART_SUCCESS,
+    REMOVE_FROM_CART
 } from "./constants";
 
 const initialState = fromJS({
@@ -50,9 +54,31 @@ function appReducer(state = initialState, action) {
             return state.set('userActions', action.userActions).set('loading', false);
 
         case ADD_TO_CART:
-            let newCartProducts = state.cartProducts;
-            newCartProducts.push(action.product);
-            return state.set('cartProducts', newCartProducts);
+            let newCartProducts = state.get('cartProducts').toJS();
+            if(newCartProducts.find(inCart => inCart.id === action.product.id)) {
+                newCartProducts.find(inCart => inCart.id === action.product.id).quantity += 1;
+            }
+            else {
+                newCartProducts.push({
+                    id: action.product.id,
+                    quantity: 1,
+                    name: action.product.name,
+                    sellPrice: action.product.sellPrice,
+                    images: action.product.images,
+                });
+            }
+            return state.set('cartProducts', fromJS(newCartProducts));
+        case ADD_TO_CART_SUCCESS:
+            return state.set('loading', false);
+
+        case REMOVE_FROM_CART: 
+            let removeCartProducts = state.get('cartProducts').toJS();
+            const removeProduct = removeCartProducts.find(inCart => inCart.id === action.productId)
+            if(!!removeProduct) {
+                if(removeProduct.quantity <= 1) removeCartProducts = removeCartProducts.filter(product => product.id !== action.productId)
+                else removeCartProducts.find(inCart => inCart.id === action.productId).quantity -= 1;
+            }
+            return state.set('cartProducts', fromJS(removeCartProducts));
 
         case FETCH_PRODUCTS:
             return state.set('loading', true).set('error', false);

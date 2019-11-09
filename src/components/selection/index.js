@@ -8,9 +8,9 @@ class Selection extends Component {
     render() {
         const { options } = this.props;
         return (
-            <select>
+            <select class="custom-select" onChange={e => this.props.onChange(e.target.value)}>
                 {options.map(option => (
-                    <option value={option.value} onClick={() => console.log(option.value)}>{option.label|| ''}</option>
+                    <option value={option.value}>{option.label|| ''}</option>
                 ))}
             </select>
         )

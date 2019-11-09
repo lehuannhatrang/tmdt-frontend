@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import {createStructuredSelector} from "reselect";
-import {selectCurrentUser} from "../../containers/app/selectors";
+import {
+    selectCurrentUser,
+    selectCartProducts,
+} from "../../containers/app/selectors";
 import {connect} from "react-redux";
 
 class Header extends Component {
@@ -16,6 +19,8 @@ class Header extends Component {
     }
 
     render() {
+        const { cartProducts } = this.props;
+        const cartTotalItem = cartProducts.reduce((total, currentValue) => total + currentValue.quantity, 0)
         const displayName = this.props.user.userInfo ? this.props.user.userInfo.displayName : '';
         return (
             <header class="header_area">
@@ -56,7 +61,7 @@ class Header extends Component {
 
                             <ul class="nav-shop">
                             {/* <li class="nav-item"><button><i class="ti-search"></i></button></li> */}
-                            <li class="nav-item"><Link to="/cart"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button></Link></li>
+                            <li class="nav-item"><Link to="/cart"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">{cartTotalItem}</span></button></Link></li>
                             <li class="nav-item"><Link class="button button-header" to="/shopping">Buy Now</Link></li>
                             </ul>
                         </div>
@@ -69,8 +74,13 @@ class Header extends Component {
     }
 }
 
+Header.defaultProps = {
+    cartProducts: [],
+}
+
 const mapStateToProps = createStructuredSelector({
-    user: selectCurrentUser()
+    user: selectCurrentUser(),
+    cartProducts: selectCartProducts(),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -5,6 +5,7 @@ import {
     FETCH_USERS, 
     FETCH_USERS_ACTIONS,
     FETCH_PRODUCTS,
+    ADD_TO_CART,
 } from "./constants";
 import {
     error, 
@@ -12,6 +13,7 @@ import {
     fetchUsersSuccess,
     fetchUserSuccess,
     fetchProductsSuccess,
+    addToCartSuccess,
     loginSuccess
 } from "./actions";
 
@@ -130,6 +132,21 @@ function* doFetchProducts() {
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+function* addToCart(params) {
+    yield put(addToCartSuccess(params.productId));
+}
+
+function* AddToCartsWatcher() {
+    yield takeLatest(ADD_TO_CART, addToCart)
+}
+
+function* doAddToCart() {
+    yield fork(AddToCartsWatcher)
+}
+
+
 export default function* root() {
     
     try {
@@ -139,6 +156,7 @@ export default function* root() {
             doFetchUserActions(),
             doFetchUsers(),
             doFetchProducts(),
+            doAddToCart()
         ])
     } catch (e) {
         console.log(e)
