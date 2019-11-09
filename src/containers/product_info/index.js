@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import {createStructuredSelector} from 'reselect';
 import HttpUtils from '../../utils/http.util';
 import { Slide } from 'react-slideshow-image';
+import { FeedSummary } from 'semantic-ui-react';
 
 const properties = {
     duration: 5000,
@@ -27,6 +28,8 @@ class ProductInfo extends Component {
             id: id,
             product: {},
             best_seller_list: [],
+            star_arr: [0,0,0,0,0],
+            star_average: 0
         }
         this.displayPrice = this.displayPrice.bind(this);
     }
@@ -38,10 +41,30 @@ class ProductInfo extends Component {
     componentDidMount() {
         HttpUtils.getJson('/products/' + this.state.id)
         .then(data => {
+            var temp_star_arr = [0,0,0,0,0]
+            for(var i = 0; i< data.data.reviews.length; i++){
+                if (data.data.reviews[i].star <= 1){
+                    temp_star_arr[0]+=1
+                } else if (data.data.reviews[i].star === 2){
+                    temp_star_arr[1]+=1
+                } else if (data.data.reviews[i].star === 3){
+                    temp_star_arr[2]+=1
+                } else if (data.data.reviews[i].star === 4){
+                    temp_star_arr[3]+=1
+                } else {
+                    temp_star_arr[4]+=1
+                }
+            }
+
+            var temp_star_average = 0
+            for(var i = 0; i< temp_star_arr.length; i++){
+                temp_star_average += temp_star_arr[i]*(i+1)
+            }
             this.setState({
-                product: data.data
+                product: data.data,
+                star_arr: temp_star_arr,
+                star_average: temp_star_average/temp_star_arr.reduce((a,b) => a+b,0)
             })
-            console.log(data.data)
         })
         .catch(err => {
 
@@ -141,72 +164,22 @@ class ProductInfo extends Component {
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                 <div class="table-responsive">
                                     <table class="table">
+                                        {product.attributes.map(att =>
                                         <tbody>
+                                            <h4>{att.key}</h4>
+                                            {att.subAttributes.map(attr => (
                                             <tr>
                                                 <td>
-                                                    <h5>Width</h5>
+                                            <h5>{attr["key"]}</h5>
                                                 </td>
                                                 <td>
-                                                    <h5>128mm</h5>
+                                                    <h5>{attr["value"]}</h5>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <h5>Height</h5>
-                                                </td>
-                                                <td>
-                                                    <h5>508mm</h5>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h5>Depth</h5>
-                                                </td>
-                                                <td>
-                                                    <h5>85mm</h5>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h5>Weight</h5>
-                                                </td>
-                                                <td>
-                                                    <h5>52gm</h5>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h5>Quality checking</h5>
-                                                </td>
-                                                <td>
-                                                    <h5>yes</h5>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h5>Freshness Duration</h5>
-                                                </td>
-                                                <td>
-                                                    <h5>03days</h5>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h5>When packeting</h5>
-                                                </td>
-                                                <td>
-                                                    <h5>Without touch of hand</h5>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h5>Each Box contains</h5>
-                                                </td>
-                                                <td>
-                                                    <h5>60pcs</h5>
-                                                </td>
-                                            </tr>
+                                            )
+                                            )}
                                         </tbody>
+                                        )}
                                     </table>
                                 </div>
                             </div>
@@ -311,25 +284,24 @@ class ProductInfo extends Component {
                                                         <li><a href="#">5 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
                                                                 class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
                                                         <li><a href="#">4 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                                                                class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
-                                                        <li><a href="#">3 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                                                                class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
-                                                        <li><a href="#">2 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                                                                class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
-                                                        <li><a href="#">1 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                                                                class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
+                                                                class="fa fa-star"></i> 01</a></li>
+                                                        <li><a href="#">3 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i 
+                                                                class="fa fa-star"></i> 01</a></li>
+                                                        <li><a href="#">2 Star <i class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
+                                                        <li><a href="#">1 Star <i class="fa fa-star"></i> 01</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="review_list">
-                                            <div class="review_item">
+                                            {product.reviews.map(review =>(
+                                                <div class="review_item">
                                                 <div class="media">
-                                                    <div class="d-flex">
+                                                    {/* <div class="d-flex">
                                                         <img src="img/product/review-1.png" alt=""/>
-                                                    </div>
+                                                    </div> */}
                                                     <div class="media-body">
-                                                        <h4>Blake Ruiz</h4>
+                                                        <h4>{review.name}</h4>
                                                         <i class="fa fa-star"></i>
                                                         <i class="fa fa-star"></i>
                                                         <i class="fa fa-star"></i>
@@ -337,46 +309,10 @@ class ProductInfo extends Component {
                                                         <i class="fa fa-star"></i>
                                                     </div>
                                                 </div>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                                                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                                    commodo</p>
+                                                <p>{review.content}</p>
                                             </div>
-                                            <div class="review_item">
-                                                <div class="media">
-                                                    <div class="d-flex">
-                                                        <img src="img/product/review-2.png" alt=""/>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <h4>Blake Ruiz</h4>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
-                                                </div>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                                                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                                    commodo</p>
-                                            </div>
-                                            <div class="review_item">
-                                                <div class="media">
-                                                    <div class="d-flex">
-                                                        <img src="img/product/review-3.png" alt=""/>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <h4>Blake Ruiz</h4>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
-                                                </div>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                                                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                                    commodo</p>
-                                            </div>
+                                            ))}
+                                            
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
