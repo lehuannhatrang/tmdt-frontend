@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import Header from "../../components/header/Header";
 import {connect} from "react-redux";
 import {createStructuredSelector} from 'reselect';
+import {
+    selectCartProducts,
+} from "../app/selectors"
 
 class Checkout extends Component {
     constructor(props) {
@@ -182,6 +185,9 @@ class Checkout extends Component {
 
 }
 
+Checkout.defaultProps = {
+    cartProducts: [],
+}
 
 function mapDispatchToProps(dispatch) {
     return {
@@ -190,6 +196,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 const mapStateToProps = createStructuredSelector({
+    cartProducts: selectCartProducts(),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Checkout);
