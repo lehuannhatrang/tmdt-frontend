@@ -57,7 +57,7 @@ function appReducer(state = initialState, action) {
         case FETCH_PRODUCTS:
             return state.set('loading', true).set('error', false);
         case FETCH_PRODUCTS_SUCCESS:
-            return state.set('products', action.products)
+            return state.set('products', action.products.data)
 
         case REQUEST_FAILED:
             return state.set('error', true).set('errorInfo', action.error).set('loading', false)
