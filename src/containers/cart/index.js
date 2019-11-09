@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Header from "../../components/header/Header";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 import {createStructuredSelector} from 'reselect';
 import { selectCartProducts } from '../app/selectors';
 
@@ -12,15 +13,29 @@ class Cart extends Component {
         }
     }
 
+    handleChange(id, event) {
+        var temp_arr = [...this.state.cartProducts]
+        for (var i=0; i<temp_arr.length;i++ ){
+            if (temp_arr[i].id === id){
+                temp_arr[i].quantity = event.target.value
+            }
+        }
+        this.setState({
+            cartProducts: temp_arr
+        })
+      }
+
     componentDidMount() {
         this.setState({
             cartProducts: [
                 {
+                    id: "1",
                     name: 'example',
                     price: '100.00',
                     quantity: '2'
                 },
                 {
+                    id: "2",
                     name: 'example 2',
                     price: '200.00',
                     quantity: '2'
@@ -30,7 +45,7 @@ class Cart extends Component {
     }
 
     render() {
-        const { cartProducts } = this.props;
+        const { cartProducts } = this.state;
         return(
             <div>
                 <Header/>
@@ -41,7 +56,7 @@ class Cart extends Component {
                                 <h1>Shopping Cart</h1>
                                 <nav aria-label="breadcrumb" class="banner-breadcrumb">
                         <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><Link to="#">Home</Link></li>
                         <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
                         </ol>
                     </nav>
@@ -68,7 +83,7 @@ class Cart extends Component {
                                 <tbody>
                                     {cartProducts.map(product => {
                                         return(
-                                        <tr>
+                                        <tr key={product.id}>
                                             <td>
                                                 <div class="media">
                                                     <div class="d-flex">
@@ -84,12 +99,8 @@ class Cart extends Component {
                                             </td>
                                             <td>
                                                 <div class="product_count">
-                                                    <input type="text" name="qty" id="sst" maxlength="12" value={product.quantity} title="Quantity:"
-                                                        class="input-text qty"/>
-                                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                                        class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                                        class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+                                                    <input type="number" name="qty"
+                                                    class="input-text qty" value={product.quantity} onChange={this.handleChange.bind(this, product.id)}/>
                                                 </div>
                                             </td>
                                             <td>
@@ -149,8 +160,8 @@ class Cart extends Component {
                                         </td>
                                         <td>
                                             <div class="checkout_btn_inner d-flex align-items-center">
-                                                <a class="gray_btn" href="#">Back</a>
-                                                <a class="primary-btn ml-2" href="#">Proceed to checkout</a>
+                                                <Link class="gray_btn" to="/shopping">Continue Shopping</Link>
+                                                <Link class="primary-btn ml-2" to="/checkout">Proceed to checkout</Link>
                                             </div>
                                         </td>
                                     </tr>

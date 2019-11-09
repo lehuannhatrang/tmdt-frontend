@@ -31,7 +31,7 @@ class Header extends Component {
                         </button>
                         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                             <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-                            <li class="nav-item active"><Link class="nav-link" to="/">Home</Link></li>
+                            <li class="nav-item "><Link class="nav-link" to="/">Home</Link></li>
                             <li class="nav-item submenu dropdown">
                                 <Link to="/shopping" class="nav-link">Shopping</Link>
                             </li>

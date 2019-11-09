@@ -26,7 +26,7 @@ class Item extends Component {
                 <div class="card-product__img">
                     <img class="card-img" src={item.images[0].url} alt=""/>
                     <ul class="card-product__imgOverlay">
-                    <li><Link to={{pathname:"/info"+item.id, product_id: item.id}}><button><i class="ti-search"></i></button></Link></li>
+                    <li><Link to={{pathname:"/product/"+item.id, product_id: item.id}}><button><i class="ti-search"></i></button></Link></li>
                     <li><button><i class="ti-shopping-cart"></i></button></li>
                     <li><button><i class="ti-heart"></i></button></li>
                     </ul>
@@ -34,7 +34,7 @@ class Item extends Component {
                 <div class="card-body">
                     <p>{item.category}</p>
                     <h4 class="card-product__title">
-                        <Link to={{pathname:"/info"+item.id, product_id: item.id}}>{item.name}
+                        <Link to={{pathname:"/product/"+item.id, product_id: item.id}}>{item.name}
                         </Link>
                     </h4>
                     <p class="card-product__price">{this.displayPrice(item.sellPrice)}</p>
