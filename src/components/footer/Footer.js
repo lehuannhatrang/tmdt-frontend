@@ -25,12 +25,9 @@ class Footer extends Component {
                             <div class="col-lg-3 col-md-6 col-sm-6">
                                 <div class="single-footer-widget tp_widgets">
                                     <h4 class="footer_title large_title">Our Mission</h4>
-                                    <p>
-                                        So seed seed green that winged cattle in. Gathering thing made fly you're no 
-                                        divided deep moved us lan Gathering thing us land years living.
-                                    </p>
-                                    <p>
-                                        So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved 
+                                    <p>With the goal of bringing customers great products and online shopping service
+                                        reliable route. Vitinhvui constantly improving the quality of service and listening to comments
+                                        contribution from customers to increasingly perfect the service in the best way.
                                     </p>
                                 </div>
                             </div>
