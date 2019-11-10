@@ -66,6 +66,8 @@ function appReducer(state = initialState, action) {
                     images: action.product.images,
                 });
             }
+            console.log(newCartProducts)
+            localStorage.setItem('cartProducts', JSON.stringify(newCartProducts));
             return state.set('cartProducts', fromJS(newCartProducts));
         case ADD_TO_CART_SUCCESS:
             return state.set('loading', false);
