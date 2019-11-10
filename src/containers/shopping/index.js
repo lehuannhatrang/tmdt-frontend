@@ -81,9 +81,36 @@ class Shopping extends Component {
                     label: 'Iphone'
                 },
             ],
+            brands: [
+                {
+                    value: 'all',
+                    label: 'All'
+                },
+                {
+                    value: 'apple',
+                    label: 'Apple'
+                },
+                {
+                    value: 'asus',
+                    label: 'Asus'
+                },
+                {
+                    value: 'dell',
+                    label: 'Dell'
+                },
+                {
+                    value: 'xiaomi',
+                    label: 'Xiaomi'
+                },
+                {
+                    value: 'samsung',
+                    label: 'Samsung'
+                },
+            ],
             chosenCategory: 0,
             chosenSortType: 'INCREASE_PRICE',
             chosenShowNumber: 12,
+            chosenBrand: 'all',
             search: ''
         }
     }
@@ -148,25 +175,11 @@ class Shopping extends Component {
                 <div class="head">Brands</div>
                 <form action="#">
                     <ul>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="apple" name="brand"/><label for="apple">Apple</label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="asus" name="brand"/><label for="asus">Asus</label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="gionee" name="brand"/><label for="gionee">Gionee</label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="micromax" name="brand"/><label for="micromax">Micromax</label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="samsung" name="brand"/><label for="samsung">Samsung</label></li>
-                    </ul>
-                </form>
-                </div>
-                <div class="common-filter">
-                <div class="head">Color</div>
-                <form action="#">
-                    <ul>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="black" name="color"/><label for="black">Black</label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="balckleather" name="color"/><label for="balckleather">Black
-                        Leather</label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="blackred" name="color"/><label for="blackred">Black
-                        with red</label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="gold" name="color"/><label for="gold">Gold</label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="spacegrey" name="color"/><label for="spacegrey">Spacegrey</label></li>
+                        {this.state.brands.map(brand => 
+                        <li class="filter-list">
+                            <input checked={this.state.chosenBrand === brand.value} onChange={e => this.setState({chosenBrand: brand.value})} class="pixel-radio" type="radio" id={brand.value} name="brand"/>
+                            <label for={brand.value}>{brand.label}</label>
+                        </li>)}
                     </ul>
                 </form>
                 </div>
@@ -178,10 +191,10 @@ class Shopping extends Component {
         return (
             <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
                 <div class="single-search-product d-flex">
-                    <a href="#"><img src="img/product/product-sm-1.png" alt=""/></a>
+                    <a href="#"><img src={product.images[0].url} alt=""/></a>
                     <div class="desc">
                         <a href="#" class="title">{product.name ? product.name.length < 21 ? product.name : `${product.name.slice(0,20)}...` : ''}</a>
-                        <div class="price">{product.sellPrice} VND</div>
+                        <div class="price">{convertNumberToVND(product.sellPrice)} VND</div>
                     </div>
                 </div>
             </div>
@@ -190,13 +203,15 @@ class Shopping extends Component {
 
     render() {
         const { products, cartProducts } = this.props;
-        const { search, chosenCategory, chosenShowNumber, chosenSortType } = this.state;
+        const { search, chosenCategory, chosenShowNumber, chosenSortType, chosenBrand } = this.state;
         
         const filterProduct = chosenCategory === 0 ? products : products.filter(product => product.category.id === chosenCategory);
         
         const filterSearchProducts = !search ? filterProduct : filterProduct.filter(product => product.name.toLowerCase().includes(search) || product.shortDescription.toLowerCase().includes(search));
         
-        const sortProduct = filterSearchProducts.sort((a,b) => {
+        const filterBrandProducts = chosenBrand === 'all' ? filterSearchProducts : filterSearchProducts.filter(product => product.name.toLowerCase().includes(chosenBrand) || product.shortDescription.toLowerCase().includes(chosenBrand)) ;
+
+        const sortProduct = filterBrandProducts.sort((a,b) => {
             switch(chosenSortType){
                 case 'INCREASE_PRICE':
                     return a.sellPrice > b.sellPrice ? 1 : -1;
@@ -271,7 +286,7 @@ class Shopping extends Component {
                             <h2>Top <span class="section-intro__style">Product</span></h2>
                         </div>
                         <div class="row mt-30">
-                            {/* {products.map(product => this.renderPopularProduct(product))} */}
+                            {products.slice(0,12).map(product => this.renderPopularProduct(product))}
                         </div>
                     </div>
                 </section>

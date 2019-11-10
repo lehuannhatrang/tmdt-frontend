@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import {createStructuredSelector} from "reselect";
 import {selectCurrentUser} from "../../containers/app/selectors";
 import {connect} from "react-redux";
+import {  addToCart } from "../../containers/app/actions"
 
 class Item extends Component {
 
@@ -20,19 +21,20 @@ class Item extends Component {
 
     render() {
         const item = this.state.item
+        
         return (
             <div class="col-md-6 col-lg-4 col-xl-3">
                 <div class="card text-center card-product">
                 <div class="card-product__img">
                     <img class="card-img" src={item.images[0].url} alt=""/>
                     <ul class="card-product__imgOverlay">
-                    <li><Link to={{pathname:"/info"+item.id, product_id: item.id}}><button><i class="ti-search"></i></button></Link></li>
-                    <li><button><i class="ti-shopping-cart"></i></button></li>
-                    <li><button><i class="ti-heart"></i></button></li>
+                        <li><Link to={{pathname:"/info"+item.id, product_id: item.id}}><button><i class="ti-search"></i></button></Link></li>
+                        <li><button><i class="ti-shopping-cart"></i></button></li>
+                        <li><button><i class="ti-heart"></i></button></li>
                     </ul>
                 </div>
                 <div class="card-body">
-                    <p>{item.category}</p>
+                    <p>{item.category.name}</p>
                     <h4 class="card-product__title">
                         <Link to={{pathname:"/info"+item.id, product_id: item.id}}>{item.name}
                         </Link>
@@ -51,7 +53,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    dispatch
+    addToCart: (product) => dispatch(addToCart(product))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Item);

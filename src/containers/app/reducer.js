@@ -1,5 +1,4 @@
 import {fromJS , Map} from 'immutable';
-import {REHYDRATE} from 'redux-persist/constants';
 
 import {
     AUTHENTICATE,
