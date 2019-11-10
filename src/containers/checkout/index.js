@@ -5,6 +5,7 @@ import {createStructuredSelector} from 'reselect';
 import {
     selectCartProducts,
 } from "../app/selectors"
+import { convertNumberToVND } from "../../helper/convertVND";
 
 class Checkout extends Component {
     constructor(props) {
@@ -12,6 +13,10 @@ class Checkout extends Component {
         this.state = { 
             cartProducts: [],
         }
+    }
+
+    displayPrice(price) {
+        return price.toLocaleString(navigator.language, { minimumFractionDigits: 0 }) + "đ";
     }
 
     componentDidMount() {
@@ -32,7 +37,8 @@ class Checkout extends Component {
     }
 
     render() {
-        const { cartProducts } = this.state;
+        const { cartProducts } = this.props;
+        console.log(cartProducts)
         return(
             <div>
                 <Header/>
@@ -90,15 +96,19 @@ class Checkout extends Component {
                             <li><a href="#"><h4>Product <span>Total</span></h4></a></li>
                             {cartProducts.map(product => {
                                 return(
-                                    <li><a href="#">{product.name} <span class="middle">x{product.quantity}</span> <span class="last">${product.price*product.quantity}</span></a></li>
+                                    <div class="row">
+                                        <div class="col-md-6 form-group p_star"><p>{product.name}</p></div>
+                                        <div class="col-md-6 form-group p_star"><span class="middle">x{product.quantity}</span> <span class="last">{convertNumberToVND(product.sellPrice*product.quantity)} VND</span></div>
+                                    </div>
+                                    // <li><a href="#">{product.name} <span class="middle">x{product.quantity}</span> <span class="last">{convertNumberToVND(product.sellPrice*product.quantity)} VND</span></a></li>
                                 )
                             })
                             }
                             {cartProducts.length === 0 && <label>No item</label>}
                         </ul>
                             <ul class="list list_2">
-                                <li><a href="#">Total <span>${cartProducts.reduce((a, b) => {
-                                    return a + b.price * b.quantity;
+                                <li><a href="#">Total <span>{cartProducts.reduce((a, b) => {
+                                    return convertNumberToVND(a + b.sellPrice * b.quantity) + " VND";
                                 }, 0)}</span></a></li>
                             </ul>
                         
