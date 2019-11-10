@@ -14,6 +14,7 @@ import {
     FETCH_PRODUCTS_SUCCESS,
     ADD_TO_CART,
     ADD_TO_CART_SUCCESS,
+    EMPTY_CART,
     REMOVE_FROM_CART
 } from "./constants";
 
@@ -80,6 +81,10 @@ function appReducer(state = initialState, action) {
             }
             localStorage.setItem('cartProducts', JSON.stringify(removeCartProducts));
             return state.set('cartProducts', fromJS(removeCartProducts));
+
+        case EMPTY_CART:
+            localStorage.setItem('cartProducts', JSON.stringify([]));
+            return state.set('cartProducts', fromJS([]));
 
         case FETCH_PRODUCTS:
             return state.set('loading', true).set('error', false);
