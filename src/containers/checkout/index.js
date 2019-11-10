@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Header from "../../components/header/Header";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 import {createStructuredSelector} from 'reselect';
 import {
     selectCartProducts,
@@ -21,18 +22,7 @@ class Checkout extends Component {
 
     componentDidMount() {
         this.setState({
-            cartProducts: [
-                {
-                    name: 'example',
-                    price: '100.00',
-                    quantity: '2'
-                },
-                {
-                    name: 'example 2',
-                    price: '200.00',
-                    quantity: '2'
-                }
-            ]
+            cartProducts: []
         })
     }
 
@@ -98,7 +88,8 @@ class Checkout extends Component {
                                 return(
                                     <div class="row">
                                         <div class="col-md-6 form-group p_star"><p>{product.name}</p></div>
-                                        <div class="col-md-6 form-group p_star"><span class="middle">x{product.quantity}</span> <span class="last">{convertNumberToVND(product.sellPrice*product.quantity)} VND</span></div>
+                                        <div class="col-md-2 form-group p_star"><span class="middle">x{product.quantity}</span></div>
+                                        <div class="col-md-4 form-group p_star text-right"><span class="last">{convertNumberToVND(product.sellPrice*product.quantity)} VND</span></div>
                                     </div>
                                     // <li><a href="#">{product.name} <span class="middle">x{product.quantity}</span> <span class="last">{convertNumberToVND(product.sellPrice*product.quantity)} VND</span></a></li>
                                 )
@@ -107,13 +98,13 @@ class Checkout extends Component {
                             {cartProducts.length === 0 && <label>No item</label>}
                         </ul>
                             <ul class="list list_2">
-                                <li><a href="#">Total <span>{cartProducts.reduce((a, b) => {
-                                    return convertNumberToVND(a + b.sellPrice * b.quantity) + " VND";
-                                }, 0)}</span></a></li>
+                                <li><a href="#">Total <span>{convertNumberToVND(cartProducts.reduce((a, b) => {
+                                    return a + b.sellPrice * b.quantity;
+                                }, 0))} VND</span></a></li>
                             </ul>
                         
                         <div class="text-center">
-                          <a class="button button-paypal" href="#">Order</a>
+                          <Link class="button button-paypal" to="/done">Order</Link>
                         </div>
                     </div>
                 </div>
