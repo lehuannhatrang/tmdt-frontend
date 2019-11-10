@@ -18,7 +18,7 @@ class Footer extends Component {
     render() {
         const displayName = this.props.user.userInfo ? this.props.user.userInfo.displayName : '';
         return (
-            <footer class="footer">
+            <footer class="footer mt-4">
                 <div class="footer-area">
                     <div class="container">
                         <div class="row section_gap">
@@ -38,12 +38,9 @@ class Footer extends Component {
                                 <div class="single-footer-widget tp_widgets">
                                     <h4 class="footer_title">Quick Links</h4>
                                     <ul class="list">
-                                        <li><a href="#">Home</a></li>
-                                        <li><a href="#">Shop</a></li>
-                                        <li><a href="#">Blog</a></li>
-                                        <li><a href="#">Product</a></li>
-                                        <li><a href="#">Brand</a></li>
-                                        <li><a href="#">Contact</a></li>
+                                        <li><a href="/">Home</a></li>
+                                        <li><a href="/shopping">Shop</a></li>
+                                        <li><a href="/contact">Contact</a></li>
                                     </ul>
                                 </div>
                             </div>
