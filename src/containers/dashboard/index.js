@@ -47,8 +47,8 @@ class DashBoard extends Component {
                         <div class="col-sm-7 col-lg-6 offset-lg-1 pl-4 pl-md-5 pl-lg-0">
                             <div class="hero-banner__content">
                             <h4>Shop is fun</h4>
-                            <h1>Browse Our Premium Product</h1>
-                            <p>Us which over of signs divide dominion deep fill bring they're meat beho upon own earth without morning over third. Their male dry. They are great appear whose land fly grass.</p>
+                            <h1>Your happiness is our happiness</h1>
+                            {/* <p>Us which over of signs divide dominion deep fill bring they're meat beho upon own earth without morning over third. Their male dry. They are great appear whose land fly grass.</p> */}
                             <a class="button button-hero" href="#">Browse Now</a>
                             </div>
                         </div>
@@ -100,7 +100,7 @@ class DashBoard extends Component {
                                     <div class="offer__content text-center">
                                     <h3>Up To 50% Off</h3>
                                     <h4>Winter Sale</h4>
-                                    <p>Him she'd let them sixth saw light</p>
+                                    {/* <p>Him she'd let them sixth saw light</p> */}
                                     <a class="button button--active mt-3 mt-xl-4" href="#">Shop Now</a>
                                     </div>
                                 </div>
@@ -125,7 +125,7 @@ class DashBoard extends Component {
                             <div class="container">
                                 <div class="subscribe text-center">
                                 <h3 class="subscribe__title">Get Update From Anywhere</h3>
-                                <p>Bearing Void gathering light light his eavening unto dont afraid</p>
+                                {/* <p>Bearing Void gathering light light his eavening unto dont afraid</p> */}
                                 <div id="mc_embed_signup">
                                     <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe-form form-inline mt-5 pt-1">
                                     <div class="form-group ml-sm-auto">

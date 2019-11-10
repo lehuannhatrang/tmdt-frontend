@@ -6,6 +6,7 @@ import {createStructuredSelector} from 'reselect';
 import {selectUserToken} from "../app/selectors";
 import Config from "../../../configs";
 import LoginForm from "./Form";
+import { Header } from 'semantic-ui-react';
 
 class Login extends Component {
     constructor(props) {
@@ -27,6 +28,7 @@ class Login extends Component {
     }
 
     onSubmitForm(fields) {
+        console.log(fields)
         this.props.login(fields.get('username'), fields.get('password'));
     }
 
