@@ -48,12 +48,12 @@ class Footer extends Component {
                                 <div class="single-footer-widget instafeed">
                                     <h4 class="footer_title">Gallery</h4>
                                     <ul class="list instafeed d-flex flex-wrap">
-                                        <li><img src="img/gallery/r1.jpg" alt=""/></li>
-                                        <li><img src="img/gallery/r2.jpg" alt=""/></li>
-                                        <li><img src="img/gallery/r3.jpg" alt=""/></li>
-                                        <li><img src="img/gallery/r5.jpg" alt=""/></li>
-                                        <li><img src="img/gallery/r7.jpg" alt=""/></li>
-                                        <li><img src="img/gallery/r8.jpg" alt=""/></li>
+                                        <li><img src="img/gallery/1.jpg" alt=""/></li>
+                                        <li><img src="img/gallery/2.jpg" alt=""/></li>
+                                        <li><img src="img/gallery/3.jpg" alt=""/></li>
+                                        <li><img src="img/gallery/4.jpg" alt=""/></li>
+                                        <li><img src="img/gallery/5.jpg" alt=""/></li>
+                                        <li><img src="img/gallery/6.jpg" alt=""/></li>
                                     </ul>
                                 </div>
                             </div>
