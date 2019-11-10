@@ -11,6 +11,7 @@ export const ADD_TO_CART = 'vitinhvui/App/ADD_TO_CART';
 export const ADD_TO_CART_SUCCESS = 'vitinhvui/App/ADD_TO_CART_SUCCESS'
 
 export const REMOVE_FROM_CART = 'vitinhvui/App/REMOVE_FROM_CART';
+export const EMPTY_CART = 'vitinhvui/App/EMPTY_CART';
 
 export const FETCH_PRODUCTS = 'vitinhvui/App/FETCH_PRODUCTS';
 export const FETCH_PRODUCTS_SUCCESS = 'vitinhvui/App/FETCH_PRODUCTS_SUCCESS';
