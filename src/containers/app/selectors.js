@@ -31,7 +31,7 @@ const selectUserActions = () =>
     
 const selectCartProducts = () =>
     // createSelector(selectGlobal, global => global.get('cartProducts').toJS());
-    createSelector(selectGlobal, global => JSON.parse(localStorage.getItem('cartProducts')));
+    createSelector(selectGlobal, global => JSON.parse(localStorage.getItem('cartProducts')) || [] );
 
 const selectProducts = () => 
     createSelector(selectGlobal, global => global.get('products'));

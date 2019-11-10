@@ -24,8 +24,8 @@ class App extends Component {
     }
 
     componentDidMount() {
-        if (localStorage.getItem('userToken')) {
-            // this.props.fetchUser();
+        if (!localStorage.getItem('cartProducts')) {
+            localStorage.setItem('cartProducts', JSON.stringify([]));
         }
     }
 

@@ -20,7 +20,8 @@ class Header extends Component {
 
     render() {
         const { cartProducts } = this.props;
-        const cartTotalItem = cartProducts.reduce((total, currentValue) => total + currentValue.quantity, 0)
+        console.log(cartProducts)
+        const cartTotalItem = !cartProducts ? 0 : cartProducts.reduce((total, currentValue) => total + currentValue.quantity, 0)
         // const displayName = this.props.user.userInfo ? this.props.user.userInfo.displayName : '';
         return (
             <header className="header_area">
