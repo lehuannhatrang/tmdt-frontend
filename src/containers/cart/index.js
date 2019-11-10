@@ -177,8 +177,8 @@ class Cart extends Component {
                                         </td>
                                         <td>
                                             <div class="checkout_btn_inner d-flex align-items-center">
-                                                <a class="gray_btn" href="/shopping">Back</a>
-                                                <a class="primary-btn ml-2" href="/checkout">Proceed to checkout</a>
+                                                <Link class="gray_btn" to="/shopping">Back</Link>
+                                                <Link class="primary-btn ml-2" to="/checkout">Proceed to checkout</Link>
                                             </div>
                                         </td>
                                     </tr>

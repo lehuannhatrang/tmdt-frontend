@@ -97,10 +97,11 @@ class ProductInfo extends Component {
                 for (var i = 0; i < temp_star_arr.length; i++) {
                     temp_star_average += temp_star_arr[i] * (i + 1)
                 }
+                let average = temp_star_arr.reduce((a, b) => a + b, 0) === 0 ? 0 : temp_star_average / temp_star_arr.reduce((a, b) => a + b, 0)
                 this.setState({
                     product: data.data,
                     star_arr: temp_star_arr,
-                    star_average: temp_star_arr.reduce((a, b) => a + b, 0) === 0 ? 0 : temp_star_average / temp_star_arr.reduce((a, b) => a + b, 0) 
+                    star_average: Number((average).toFixed(1))
                 })
             })
             .catch(err => {
