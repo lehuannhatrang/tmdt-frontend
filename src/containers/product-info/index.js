@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import {createStructuredSelector} from 'reselect';
 import HttpUtils from '../../utils/http.util';
 import { Slide } from 'react-slideshow-image';
+import { addToCart } from '../app/actions';
 
 const properties = {
     duration: 5000,
@@ -22,11 +23,11 @@ const properties = {
 class ProductInfo extends Component {
     constructor(props) {
         super(props);
-        const id = props.match.params.product_id !== undefined ? props.match.params.product_id : props.location.product_id
         this.state = {
-            id: id,
+            id: location.pathname.split('/')[2],
             product: {},
             best_seller_list: [],
+            productQuantity: 1,
         }
         this.displayPrice = this.displayPrice.bind(this);
     }
@@ -56,7 +57,12 @@ class ProductInfo extends Component {
           .catch(err => {
 
           })
-      }
+    }
+
+    handleAddToCart(product) {
+        const tempArr = new Array(parseInt(this.state.productQuantity)).fill(0)
+        tempArr.map(x => this.props.addToCart(product))
+    }
 
 
     render() {
@@ -64,60 +70,60 @@ class ProductInfo extends Component {
         if (Object.keys(product).length === 0){
             return <div>Loading...</div>
         }
-        window.scrollTo(0, 0) 
+        // window.scrollTo(0, 0) 
         return(
             <div>
                 <Header/>
-                <section classNameName="blog-banner-area" id="blog">
-                    <div classNameName="container h-100">
-                        <div classNameName="blog-banner">
-                            <div classNameName="text-center">
+                <section className="blog-banner-area" id="blog">
+                    <div className="container h-100">
+                        <div className="blog-banner">
+                            <div className="text-center">
                                 <h1>Shop Single</h1>
-                                <nav aria-label="breadcrumb" classNameName="banner-breadcrumb">
-                        <ol classNameName="breadcrumb">
-                        <li classNameName="breadcrumb-item"><a href="#">Home</a></li>
-                        <li classNameName="breadcrumb-item active" aria-current="page">Shop Single</li>
+                                <nav aria-label="breadcrumb" className="banner-breadcrumb">
+                        <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><a href="#">Home</a></li>
+                        <li className="breadcrumb-item active" aria-current="page">Shop Single</li>
                         </ol>
                     </nav>
                             </div>
                         </div>
                 </div>
                 </section>
-                <div classNameName="product_image_area">
-                    <div classNameName="container">
-                        <div classNameName="row s_product_inner">
-                            <div classNameName="col-lg-6">
-                            <div classNameName="slide-container">
+                <div className="product_image_area">
+                    <div className="container">
+                        <div className="row s_product_inner">
+                            <div className="col-lg-6">
+                            <div className="slide-container">
                                 <Slide {...properties}>
                                     {product.images.map(img => 
-                                    <div classNameName="single-prd-item" key={img.id}>
-                                        <img classNameName="img-fluid" src={img.url} alt=""/>
+                                    <div className="single-prd-item" key={img.id}>
+                                        <img className="img-fluid" src={img.url} alt=""/>
                                     </div>
                                     )}
                                 </Slide>
                             </div>
                             </div>
-                            <div classNameName="col-lg-5 offset-lg-1">
-                                <div classNameName="s_product_text">
+                            <div className="col-lg-5 offset-lg-1">
+                                <div className="s_product_text">
                                     <h3>{product.name}</h3>
                                     <h2>{this.displayPrice(product.sellPrice)}</h2>
-                                    <ul classNameName="list">
-                                        <li><a classNameName="active" href="#"><span>Category</span> : {product.category.name}</a></li>
+                                    <ul className="list">
+                                        <li><a className="active" href="#"><span>Category</span> : {product.category.name}</a></li>
                                         <li><a href="#"><span>Availibility</span> : {product.availableCount}</a></li>
                                     </ul>
                                     <p>{product.shortDescription}</p>
-                                    <div classNameName="product_count">
+                                    <div className="product_count">
                                         <label>Quantity:</label>
-                                                        <input type="number" min={0} name="qty" id="sst" classNameName="input-text qty"/>
-                                                        <Link classNameName="button primary-btn" to="/">Add to Cart</Link>               
+                                                        <input type="number" min={1} name="qty" id="sst" defaultValue={1} className="input-text qty mr-4" onChange={e => this.setState({productQuantity: e.target.value})}/>
+                                                        <Link className="button primary-btn" to="#" onClick={() => this.handleAddToCart(product)}>Add to Cart</Link>               
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <section classNameName="product_description_area">
-                    <div classNameName="container">
+                <section className="product_description_area">
+                    <div className="container">
                         <ul className="nav nav-tabs" id="myTab" role="tablist">
                             <li className="nav-item">
                                 <a className="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a>
@@ -440,7 +446,7 @@ class ProductInfo extends Component {
 
 function mapDispatchToProps(dispatch) {
     return {
-        dispatch
+        addToCart: (product) => dispatch(addToCart(product))
     }
 }
 
