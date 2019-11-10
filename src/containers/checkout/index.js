@@ -2,13 +2,9 @@ import React, {Component} from 'react';
 import Header from "../../components/header/Header";
 import {connect} from "react-redux";
 import {createStructuredSelector} from 'reselect';
-<<<<<<< HEAD
-import { selectCartProducts } from '../app/selectors';
-=======
 import {
     selectCartProducts,
 } from "../app/selectors"
->>>>>>> master
 
 class Checkout extends Component {
     constructor(props) {
@@ -132,11 +128,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 const mapStateToProps = createStructuredSelector({
-<<<<<<< HEAD
-    cartProducts : selectCartProducts(),
-=======
     cartProducts: selectCartProducts(),
->>>>>>> master
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

@@ -7,11 +7,7 @@ import {connect} from "react-redux";
 import {createStructuredSelector} from 'reselect';
 import HttpUtils from '../../utils/http.util';
 import { Slide } from 'react-slideshow-image';
-<<<<<<< HEAD:src/containers/product_info/index.js
-import { FeedSummary } from 'semantic-ui-react';
-=======
 import { addToCart } from '../app/actions';
->>>>>>> master:src/containers/product-info/index.js
 
 const properties = {
     duration: 5000,
@@ -31,12 +27,7 @@ class ProductInfo extends Component {
             id: location.pathname.split('/')[2],
             product: {},
             best_seller_list: [],
-<<<<<<< HEAD:src/containers/product_info/index.js
-            star_arr: [0,0,0,0,0],
-            star_average: 0
-=======
             productQuantity: 1,
->>>>>>> master:src/containers/product-info/index.js
         }
         this.displayPrice = this.displayPrice.bind(this);
     }
@@ -173,16 +164,9 @@ class ProductInfo extends Component {
                         <div className="tab-content" id="myTabContent">
                             <div className="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab" dangerouslySetInnerHTML={{__html: product.description}}>
                             </div>
-<<<<<<< HEAD:src/containers/product_info/index.js
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        {product.attributes.map(att =>
-=======
                             <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                 <div className="table-responsive">
                                     <table className="table">
->>>>>>> master:src/containers/product-info/index.js
                                         <tbody>
                                             <h4>{att.key}</h4>
                                             {att.subAttributes.map(attr => (
@@ -298,17 +282,6 @@ class ProductInfo extends Component {
                                             <div className="col-6">
                                                 <div className="rating_list">
                                                     <h3>Based on 3 Reviews</h3>
-<<<<<<< HEAD:src/containers/product_info/index.js
-                                                    <ul class="list">
-                                                        <li><a href="#">5 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                                                                class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
-                                                        <li><a href="#">4 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                                                                class="fa fa-star"></i> 01</a></li>
-                                                        <li><a href="#">3 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i 
-                                                                class="fa fa-star"></i> 01</a></li>
-                                                        <li><a href="#">2 Star <i class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
-                                                        <li><a href="#">1 Star <i class="fa fa-star"></i> 01</a></li>
-=======
                                                     <ul className="list">
                                                         <li><a href="#">5 Star <i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i><i
                                                                 className="fa fa-star"></i><i className="fa fa-star"></i> 01</a></li>
@@ -320,30 +293,10 @@ class ProductInfo extends Component {
                                                                 className="fa fa-star"></i><i className="fa fa-star"></i> 01</a></li>
                                                         <li><a href="#">1 Star <i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i><i
                                                                 className="fa fa-star"></i><i className="fa fa-star"></i> 01</a></li>
->>>>>>> master:src/containers/product-info/index.js
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
-<<<<<<< HEAD:src/containers/product_info/index.js
-                                        <div class="review_list">
-                                            {product.reviews.map(review =>(
-                                                <div class="review_item">
-                                                <div class="media">
-                                                    {/* <div class="d-flex">
-                                                        <img src="img/product/review-1.png" alt=""/>
-                                                    </div> */}
-                                                    <div class="media-body">
-                                                        <h4>{review.name}</h4>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
-                                                </div>
-                                                <p>{review.content}</p>
-=======
                                         <div className="review_list">
                                             <div className="review_item">
                                                 <div className="media">
@@ -398,7 +351,6 @@ class ProductInfo extends Component {
                                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
                                                     dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
                                                     commodo</p>
->>>>>>> master:src/containers/product-info/index.js
                                             </div>
                                             ))}
                                             

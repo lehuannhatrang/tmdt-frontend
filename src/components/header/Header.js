@@ -34,19 +34,11 @@ class Header extends Component {
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-<<<<<<< HEAD
-                        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-                            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-                            <li class="nav-item "><Link class="nav-link" to="/">Home</Link></li>
-                            <li class="nav-item submenu dropdown">
-                                <Link to="/shopping" class="nav-link">Shopping</Link>
-=======
                         <div className="collapse navbar-collapse offset" id="navbarSupportedContent">
                             <ul className="nav navbar-nav menu_nav ml-auto mr-auto">
                             <li className="nav-item active"><Link className="nav-link" to="/">Home</Link></li>
                             <li className="nav-item submenu dropdown">
                                 <Link to="/shopping" className="nav-link">Shopping</Link>
->>>>>>> master
                             </li>
                             {/* <li className="nav-item submenu dropdown">
                                 <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"

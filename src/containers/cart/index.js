@@ -49,15 +49,11 @@ class Cart extends Component {
     }
 
     render() {
-<<<<<<< HEAD
-        const { cartProducts } = this.state;
-=======
         const { cartProducts } = this.props;
         console.log(cartProducts)
         const totalPrice = cartProducts.reduce((a, b) => {
             return a + b.sellPrice*b.quantity;
         }, 0)
->>>>>>> master
         return(
             <div>
                 <Header/>
@@ -117,17 +113,12 @@ class Cart extends Component {
                                             </td>
                                             <td>
                                                 <div class="product_count">
-<<<<<<< HEAD
-                                                    <input type="number" name="qty"
-                                                    class="input-text qty" value={product.quantity} onChange={this.handleChange.bind(this, product.id)}/>
-=======
                                                     <input type="text" name="qty" id="sst" maxlength="12" value={product.quantity} title="Quantity:"
                                                         class="input-text qty"/>
                                                     <button onClick={() => this.props.addToCart(product)}
                                                         class="increase items-count" type="button"><i class="fa fa-chevron-up"></i></button>
                                                     <button onClick={() => this.props.removeFromCart(product.id)}
                                                         class="reduced items-count" type="button"><i class="fa fa-chevron-down"></i></button>
->>>>>>> master
                                                 </div>
                                             </td>
                                             <td>
@@ -187,13 +178,8 @@ class Cart extends Component {
                                         </td>
                                         <td>
                                             <div class="checkout_btn_inner d-flex align-items-center">
-<<<<<<< HEAD
-                                                <Link class="gray_btn" to="/shopping">Continue Shopping</Link>
-                                                <Link class="primary-btn ml-2" to="/checkout">Proceed to checkout</Link>
-=======
                                                 <a class="gray_btn" href="/shopping">Back</a>
                                                 <a class="primary-btn ml-2" href="/checkout">Proceed to checkout</a>
->>>>>>> master
                                             </div>
                                         </td>
                                     </tr>
