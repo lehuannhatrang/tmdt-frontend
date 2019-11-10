@@ -10,6 +10,8 @@ import {
     FETCH_PRODUCTS,
     FETCH_PRODUCTS_SUCCESS,
     ADD_TO_CART,
+    ADD_TO_CART_SUCCESS,
+    REMOVE_FROM_CART,
     REQUEST_FAILED
 } from "./constants";
 
@@ -69,10 +71,25 @@ export function fetchUserActionsSuccess(userActions) {
     }
 }
 
-export function addToCard(product) {
+export function addToCart(product) {
+    console.log(product)
     return {
         type: ADD_TO_CART,
         product
+    }
+}
+
+export function addToCartSuccess(newCart) {
+    return {
+        type: ADD_TO_CART_SUCCESS,
+        newCart
+    }
+}
+
+export function removeFromCart(productId) {
+    return {
+        type: REMOVE_FROM_CART,
+        productId,
     }
 }
 
