@@ -23,12 +23,13 @@ class RecommendItem extends Component {
         return (
             <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
                 <div class="card text-center card-product">
-                    <Link to={{pathname:"/info"+item.id, product_id: item.id}}>
-                        <img class="card-img" src={item.images[0].url} alt=""/>
-                    </Link>
+                    {/* <Link to={{pathname:"/product/"+item.id, product_id: item.id}}> */}
+                        <img class="card-img" onClick={() => location.pathname = `/product/${item.id}`} src={item.images[0].url} alt=""/>
+                    {/* </Link> */}
                 </div>
                 <div class="desc">
-                    <Link to={{pathname:"/info"+item.id, product_id: item.id}} class="title">{item.name}</Link>
+                    {/* <Link to={{pathname:"/product/"+item.id, product_id: item.id}} class="title">{item.name}</Link> */}
+                  <p onClick={() => location.pathname = `/product/${item.id}`}>{item.name}</p>
                   <div class="price">{this.displayPrice(item.sellPrice)}</div>
                 </div>
             </div>

@@ -71,7 +71,7 @@ function* getLoginUser(action) {
     try {
         const data = yield HttpUtils.postJson('/auth/login', {username: action.username, password: action.password});
         if (data) {
-            localStorage.setItem('userToken', data.token);
+            localStorage.setItem('userToken', data.data.accessToken);
         }
         yield put(loginSuccess(data.token, data.user));
     } catch (err) {

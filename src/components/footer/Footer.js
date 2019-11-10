@@ -16,7 +16,7 @@ class Footer extends Component {
     }
 
     render() {
-        const displayName = this.props.user.userInfo ? this.props.user.userInfo.displayName : '';
+        // const displayName = this.props.user.userInfo ? this.props.user.userInfo.displayName : '';
         return (
             <footer class="footer mt-4">
                 <div class="footer-area">
@@ -25,12 +25,9 @@ class Footer extends Component {
                             <div class="col-lg-3 col-md-6 col-sm-6">
                                 <div class="single-footer-widget tp_widgets">
                                     <h4 class="footer_title large_title">Our Mission</h4>
-                                    <p>
-                                        So seed seed green that winged cattle in. Gathering thing made fly you're no 
-                                        divided deep moved us lan Gathering thing us land years living.
-                                    </p>
-                                    <p>
-                                        So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved 
+                                    <p>With the goal of bringing customers great products and online shopping service
+                                        reliable route. Vitinhvui constantly improving the quality of service and listening to comments
+                                        contribution from customers to increasingly perfect the service in the best way.
                                     </p>
                                 </div>
                             </div>
@@ -48,12 +45,12 @@ class Footer extends Component {
                                 <div class="single-footer-widget instafeed">
                                     <h4 class="footer_title">Gallery</h4>
                                     <ul class="list instafeed d-flex flex-wrap">
-                                        <li><img src="img/gallery/r1.jpg" alt=""/></li>
-                                        <li><img src="img/gallery/r2.jpg" alt=""/></li>
-                                        <li><img src="img/gallery/r3.jpg" alt=""/></li>
-                                        <li><img src="img/gallery/r5.jpg" alt=""/></li>
-                                        <li><img src="img/gallery/r7.jpg" alt=""/></li>
-                                        <li><img src="img/gallery/r8.jpg" alt=""/></li>
+                                        <li><img src="img/gallery/1.jpg" alt=""/></li>
+                                        <li><img src="img/gallery/2.jpg" alt=""/></li>
+                                        <li><img src="img/gallery/3.jpg" alt=""/></li>
+                                        <li><img src="img/gallery/4.jpg" alt=""/></li>
+                                        <li><img src="img/gallery/5.jpg" alt=""/></li>
+                                        <li><img src="img/gallery/6.jpg" alt=""/></li>
                                     </ul>
                                 </div>
                             </div>

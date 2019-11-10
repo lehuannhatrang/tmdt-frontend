@@ -95,7 +95,7 @@ class HttpUtil {
     }
 
     static postJsonAuthorization(path, data, headers) {
-        headers = {...headers, Authorization: localStorage.getItem('userToken')}
+        headers = {...headers, Authorization: 'Bearer ' +localStorage.getItem('userToken')}
         return HttpUtil.makeJsonRequest('POST', path, data, headers);
     }
 
