@@ -66,7 +66,6 @@ function appReducer(state = initialState, action) {
                     images: action.product.images,
                 });
             }
-            console.log(newCartProducts)
             localStorage.setItem('cartProducts', JSON.stringify(newCartProducts));
             return state.set('cartProducts', fromJS(newCartProducts));
         case ADD_TO_CART_SUCCESS:
@@ -79,6 +78,7 @@ function appReducer(state = initialState, action) {
                 if(removeProduct.quantity <= 1) removeCartProducts = removeCartProducts.filter(product => product.id !== action.productId)
                 else removeCartProducts.find(inCart => inCart.id === action.productId).quantity -= 1;
             }
+            localStorage.setItem('cartProducts', JSON.stringify(removeCartProducts));
             return state.set('cartProducts', fromJS(removeCartProducts));
 
         case FETCH_PRODUCTS:
