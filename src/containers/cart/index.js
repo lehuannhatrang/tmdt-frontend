@@ -50,7 +50,6 @@ class Cart extends Component {
 
     render() {
         const { cartProducts } = this.props;
-        console.log(cartProducts)
         const totalPrice = cartProducts.reduce((a, b) => {
             return a + b.sellPrice*b.quantity;
         }, 0)

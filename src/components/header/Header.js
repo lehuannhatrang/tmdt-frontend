@@ -21,7 +21,7 @@ class Header extends Component {
     render() {
         const { cartProducts } = this.props;
         const cartTotalItem = cartProducts.reduce((total, currentValue) => total + currentValue.quantity, 0)
-        const displayName = this.props.user.userInfo ? this.props.user.userInfo.displayName : '';
+        // const displayName = this.props.user.userInfo ? this.props.user.userInfo.displayName : '';
         return (
             <header className="header_area">
                 <div className="main_menu">
@@ -36,7 +36,7 @@ class Header extends Component {
                         </button>
                         <div className="collapse navbar-collapse offset" id="navbarSupportedContent">
                             <ul className="nav navbar-nav menu_nav ml-auto mr-auto">
-                            <li className="nav-item active"><Link className="nav-link" to="/">Home</Link></li>
+                            <li className="nav-item "><Link className="nav-link" to="/">Home</Link></li>
                             <li className="nav-item submenu dropdown">
                                 <Link to="/shopping" className="nav-link">Shopping</Link>
                             </li>
@@ -53,7 +53,8 @@ class Header extends Component {
                                 aria-expanded="false">Pages</a>
                                 <ul className="dropdown-menu">
                                 <li className="nav-item"><Link className="nav-link" to="/login">Login</Link></li>
-                                <li className="nav-item"><a className="nav-link" href="register.html">Register</a></li>
+                                <li className="nav-item"><Link className="nav-link" to="/" onClick={this.handleLogout.bind(this)}>Logout</Link></li>
+                                {/* <li className="nav-item"><a className="nav-link" href="register.html">Register</a></li> */}
                                 </ul>
                             </li>
                             <li className="nav-item"><Link className="nav-link" to="/contact">Contact</Link></li>

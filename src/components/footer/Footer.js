@@ -16,7 +16,7 @@ class Footer extends Component {
     }
 
     render() {
-        const displayName = this.props.user.userInfo ? this.props.user.userInfo.displayName : '';
+        // const displayName = this.props.user.userInfo ? this.props.user.userInfo.displayName : '';
         return (
             <footer class="footer mt-4">
                 <div class="footer-area">

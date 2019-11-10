@@ -57,9 +57,21 @@ class ProductInfo extends Component {
             star: this.state.star,
             content: this.state.message,
             productId: this.state.id
+        },{
+            Authorization: 'Bearer ' +localStorage.getItem('userToken')
         }).then(data => {
-            console.log('success')
-        }).catch(err=> console.log('fail'))
+            this.setState({
+                name: "",
+                message: ""
+            })
+            window.location.reload()
+        }).catch(err=> {
+                this.setState({
+                name: "",
+                message: ""
+            })
+            window.location.reload()
+        })
     }
 
 
@@ -88,7 +100,7 @@ class ProductInfo extends Component {
                 this.setState({
                     product: data.data,
                     star_arr: temp_star_arr,
-                    star_average: temp_star_average / temp_star_arr.reduce((a, b) => a + b, 0)
+                    star_average: temp_star_arr.reduce((a, b) => a + b, 0) === 0 ? 0 : temp_star_average / temp_star_arr.reduce((a, b) => a + b, 0) 
                 })
             })
             .catch(err => {

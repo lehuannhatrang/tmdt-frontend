@@ -19,6 +19,7 @@ class Router extends Component {
             <div>
                 <Switch>
                     <Route exact path="/login" component={Login}/>
+                    {/* <Route exact path="/logout" component={Logout}/> */}
                     <Route exact path="/" component={DashBoard}/>
                     <Route exact path="/cart" component={Cart}/>
                     <Route exact path="/checkout" component={Checkout}/>
