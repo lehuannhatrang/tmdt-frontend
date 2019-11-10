@@ -12,6 +12,7 @@ import {
     ADD_TO_CART,
     ADD_TO_CART_SUCCESS,
     REMOVE_FROM_CART,
+    EMPTY_CART,
     REQUEST_FAILED
 } from "./constants";
 
@@ -89,6 +90,12 @@ export function removeFromCart(productId) {
     return {
         type: REMOVE_FROM_CART,
         productId,
+    }
+}
+
+export function emptyCart() {
+    return {
+        type: EMPTY_CART
     }
 }
 
