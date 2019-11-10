@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Header from "../../components/header/Header";
+import { createStructuredSelector } from 'reselect';
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Footer from '../../components/footer/Footer';
+import { emptyCart } from "../app/actions"
 
 class Done extends Component {
     constructor(props) {
@@ -15,6 +17,7 @@ class Done extends Component {
     }
 
     componentDidMount() {
+        this.props.emptyCart();
         this.setState({
         });
     }
@@ -34,7 +37,7 @@ class Done extends Component {
                     {loading && <i class="fa fa-cog fa-spin text-muted" ></i>}
                     {!loading && <i class="fa fa-check-circle text-primary"  aria-hidden="true"></i>}
                     <div class="checkout_btn_inner d-flex align-items-center">
-                        <Link class={`primary-btn ml-2 ${loading ? "text-muted" : "text-primary"}`} to="/">Continue shopping</Link>
+                        <Link class={`primary-btn ml-2 ${loading ? "text-muted" : "text-primary"}`} to="/">{loading ? "Processing" : "Continue shopping"}</Link>
                     </div>
                 </div>
                 <Footer />
@@ -54,4 +57,13 @@ const styles = {
     }
 }
 
-export default connect()(Done);
+function mapDispatchToProps(dispatch) {
+    return {
+        emptyCart: () => dispatch(emptyCart())
+    }
+}
+
+const mapStateToProps = createStructuredSelector({
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Done);

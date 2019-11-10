@@ -48,6 +48,7 @@ class Cart extends Component {
         })
     }
 
+
     render() {
         const { cartProducts } = this.props;
         const totalPrice = cartProducts.reduce((a, b) => {
@@ -178,7 +179,7 @@ class Cart extends Component {
                                         <td>
                                             <div class="checkout_btn_inner d-flex align-items-center">
                                                 <Link class="gray_btn" to="/shopping">Back</Link>
-                                                <Link class="primary-btn ml-2" to="/checkout">Proceed to checkout</Link>
+                                                <Link class="primary-btn ml-2" to="/checkout" >Proceed to checkout</Link>
                                             </div>
                                         </td>
                                     </tr>
