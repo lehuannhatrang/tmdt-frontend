@@ -128,7 +128,7 @@ class Shopping extends Component {
                 <div class="card text-center card-product">
                     <div class="card-product__img" style={{height: 254}}>
                         <img onClick={() => this.props.history.push(`/product/${product.id}`)} 
-                        class="card-img pointer" src={product.images ? product.images[0].url.includes('http') ? product.images[0].url : "img/product/product1.png" : "img/product/product1.png"} alt=""/>
+                        class="card-img pointer" src={product.images && product.images[0] ? (product.images[0].url.includes('http') ? product.images[0].url : "img/product/product1.png") : "img/product/product1.png"} alt=""/>
                         <ul class="card-product__imgOverlay">
                         {/* <li><button><i class="ti-search"></i></button></li> */}
                         <li><button onClick={() => this.props.addToCart(product)}><i class="ti-shopping-cart"></i></button></li>

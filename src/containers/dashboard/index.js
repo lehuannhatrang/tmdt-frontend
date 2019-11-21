@@ -49,7 +49,7 @@ class DashBoard extends Component {
                             <h4>Shop is fun</h4>
                             <h1>Your happiness is our happiness</h1>
                             {/* <p>Us which over of signs divide dominion deep fill bring they're meat beho upon own earth without morning over third. Their male dry. They are great appear whose land fly grass.</p> */}
-                            <a class="button button-hero" href="#">Browse Now</a>
+                            <a class="button button-hero" href="/shopping">Browse Now</a>
                             </div>
                         </div>
                         </div>
