@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm run clean && npm install && npm install && NODE_ENV=production webpack --env production --config ./webpack/webpack.config.js",
+    "build": "npm run clean && NODE_ENV=production webpack --env production --config ./webpack/webpack.config.js",
     "start": "serve -s dist",
     "dev-docker": "NODE_ENV=dev-docker webpack --env dev-docker --config ./webpack/webpack.config.js",
     "start:dev": "webpack-dev-server --port 5000 --config ./webpack/webpack.config.js",
@@ -78,6 +78,7 @@
     "reselect": "^4.0.0",
     "routes": "^2.1.0",
     "semantic-ui-react": "^0.88.1",
+    "serve": "^11.2.0",
     "styled": "^1.0.0"
   }
 }
