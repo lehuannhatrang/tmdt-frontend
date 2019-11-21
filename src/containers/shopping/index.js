@@ -191,7 +191,7 @@ class Shopping extends Component {
         return (
             <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
                 <div class="single-search-product d-flex">
-                    <a href="#"><img src={product.images[0].url} alt=""/></a>
+                    <a href="#"><img src={product.images && product.images[0] ? (product.images[0].url.includes('http') ? product.images[0].url : "img/product/product1.png") : "img/product/product1.png"} alt=""/></a>
                     <div class="desc">
                         <a href="#" class="title">{product.name ? product.name.length < 21 ? product.name : `${product.name.slice(0,20)}...` : ''}</a>
                         <div class="price">{convertNumberToVND(product.sellPrice)} VND</div>
