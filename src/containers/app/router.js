@@ -9,6 +9,7 @@ import Shopping from "../shopping";
 import ProductInfo from "../product-info";
 import Contact from "../contact";
 import If from "../../components/control/If";
+import Done from "../done"
 
 class Router extends Component {
     constructor(props) {
@@ -20,6 +21,7 @@ class Router extends Component {
                 <Switch>
                     <Route exact path="/login" component={Login}/>
                     {/* <Route exact path="/logout" component={Logout}/> */}
+                    <Route exact path="/done" component={Done}/>
                     <Route exact path="/" component={DashBoard}/>
                     <Route exact path="/cart" component={Cart}/>
                     <Route exact path="/checkout" component={Checkout}/>
