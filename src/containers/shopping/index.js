@@ -13,6 +13,7 @@ import {
 import Selection from "../../components/selection";
 import Footer from "../../components/footer/Footer";
 import { convertNumberToVND } from "../../helper/convertVND";
+import {Link} from "react-router-dom";
 
 class Shopping extends Component {
     constructor(props) {
@@ -137,7 +138,7 @@ class Shopping extends Component {
                     </div>
                     <div class="card-body">
                         <p>{product.category ? (product.category.name || 'Laptop') : 'Laptop'}</p>
-                        <h4 class="card-product__title"><a href="#" onClick={() => this.props.history.push(`/product/${product.id}`)}>{product.name ? product.name.length < 41 ? product.name : `${product.name.slice(0,40)}...` : ''}</a></h4>
+                        <h4 class="card-product__title"><Link to={`/product/${product.id}`}>{product.name ? product.name.length < 41 ? product.name : `${product.name.slice(0,40)}...` : ''}</Link></h4>
                         <p class="card-product__price">{convertNumberToVND(product.sellPrice)} VND</p>
                     </div>
                 </div>
