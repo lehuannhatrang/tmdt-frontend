@@ -42,7 +42,7 @@
     "webpack-dev-server": "^2.9.7"
   },
   "dependencies": {
-    "axios": "^0.16.2",
+    "axios": "^0.21.1",
     "connected-react-router": "^4.5.0",
     "cron-parser": "^2.7.3",
     "glamor": "^2.20.40",
